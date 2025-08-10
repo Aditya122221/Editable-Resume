@@ -1,0 +1,261 @@
+/* Resume.module.css */
+
+.resume {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  font-family: 'Calibri';
+  font-size: 14px;
+  line-height: 1.4;
+  color: #000;
+  background: white;
+}
+
+/* Header Section */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.name {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+  color: #000;
+}
+
+.location {
+  font-size: 16px;
+  margin: 0 0 10px 0;
+  color: #000;
+}
+
+.contact {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 14px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #000;
+  text-decoration: none;
+}
+
+/* Section Styles */
+.section {
+  margin-bottom: 25px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+  color: #000;
+  border-bottom: 2px solid #000;
+  padding-bottom: 2px;
+}
+
+/* Summer Training Section */
+.experienceItem {
+  margin-bottom: 15px;
+}
+
+.experienceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 5px;
+}
+
+.jobTitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #000;
+}
+
+.date {
+  font-size: 14px;
+  color: #000;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.description {
+  margin: 5px 0;
+  color: #000;
+}
+
+.bulletList {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.bulletList li {
+  margin-bottom: 3px;
+  color: #000;
+}
+
+.techStack {
+  margin: 8px 0 0 0;
+  color: #000;
+}
+
+/* Projects Section */
+.projectItem {
+  margin-bottom: 20px;
+}
+
+.projectHeader {
+  margin-bottom: 8px;
+}
+
+.projectTitleLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.projectTitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #000;
+  flex: 1;
+}
+
+.techUsed {
+  font-weight: normal;
+  color: #000;
+  font-style: italic;
+}
+
+.githubLink {
+  margin: 8px 0 0 0;
+  color: #000;
+}
+
+.linkgit {
+  color: blue;
+}
+
+/* Certificates Section */
+.certificateItem {
+  margin-bottom: 15px;
+}
+
+.certificateHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2px;
+}
+
+.certificateTitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #000;
+  flex: 1;
+}
+
+.certificateOrg {
+  margin: 0;
+  color: #000;
+  font-style: italic;
+}
+
+/* Technical Skills Section */
+.skillsContainer {
+  margin: 0;
+}
+
+.skillLine {
+  margin: 8px 0;
+  color: #000;
+}
+
+/* Education Section */
+.educationItem {
+  margin-bottom: 15px;
+}
+
+.educationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2px;
+}
+
+.institutionName {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #000;
+  flex: 1;
+}
+
+.degree {
+  margin: 2px 0;
+  color: #000;
+  font-style: italic;
+}
+
+.educationLocation {
+  margin: 2px 0 0 0;
+  color: #000;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .resume {
+    padding: 20px;
+  }
+  
+  .contact {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .experienceHeader,
+  .projectTitleLine,
+  .certificateHeader,
+  .educationHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .date {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .resume {
+    padding: 15px;
+  }
+  
+  .name {
+    font-size: 24px;
+  }
+  
+  .sectionTitle {
+    font-size: 16px;
+  }
+  
+  .projectTitle,
+  .jobTitle,
+  .certificateTitle,
+  .institutionName {
+    font-size: 14px;
+  }
+}
