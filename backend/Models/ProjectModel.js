@@ -15,10 +15,10 @@ const ProjectSchema = new mongoose.Schema({
 
     },
     startDate: {
-        type: String
+        type: Date
     },
     endDate: {
-        type: String
+        type: Date
     },
     description: {
         type: [String],

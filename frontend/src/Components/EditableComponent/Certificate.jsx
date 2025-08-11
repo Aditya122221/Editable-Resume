@@ -13,7 +13,7 @@ const Certificate = () => {
     });
     const [editingId, setEditingId] = useState(null);
 
-    const Registration_ID = localStorage.getItem('EditableReg')
+    const Registration_ID = localStorage.getItem('EditableReg');
 
     const fetchCertificates = async () => {
         try {
@@ -21,7 +21,15 @@ const Certificate = () => {
                 `${import.meta.env.VITE_API_BASE_URL}/certificate`,
                 { Registration_ID, flag: 1 }
             );
-            setCertificates(res.data.cert || []);
+
+            // Store dates as plain strings for display
+            const formattedData = (res.data.cert || []).map(cert => ({
+                ...cert,
+                startDate: cert.startDate ? cert.startDate.split('T')[0] : '',
+                endDate: cert.endDate ? cert.endDate.split('T')[0] : ''
+            }));
+
+            setCertificates(formattedData);
         } catch (error) {
             console.error("Error fetching certificates:", error);
         }
@@ -48,11 +56,15 @@ const Certificate = () => {
             return;
         }
 
+        // Convert to Date objects for backend
+        const startDateObj = new Date(formData.startDate);
+        const endDateObj = formData.endDate ? new Date(formData.endDate) : null;
+
         const payload = {
             Registration_ID,
             name: formData.name,
-            startDate: formatMonthYear(formData.startDate),
-            endDate: formatMonthYear(formData.endDate),
+            startDate: startDateObj,
+            endDate: endDateObj,
             company: formData.company,
             flag: editingId ? 2 : 4,
             Certificate_ID: editingId
@@ -60,6 +72,7 @@ const Certificate = () => {
 
         try {
             await axios.post(`${import.meta.env.VITE_API_BASE_URL}/certificate`, payload);
+            await fetchCertificates();
         } catch (error) {
             console.error("Error saving certificate:", error);
         }
@@ -71,8 +84,8 @@ const Certificate = () => {
     const handleUpdate = (certificate) => {
         setFormData({
             name: certificate.name,
-            startDate: parseMonthYear(certificate.startDate),
-            endDate: parseMonthYear(certificate.endDate),
+            startDate: certificate.startDate ? certificate.startDate.split('T')[0] : '',
+            endDate: certificate.endDate ? certificate.endDate.split('T')[0] : '',
             company: certificate.company
         });
         setEditingId(certificate.Certificate_ID);
@@ -84,6 +97,7 @@ const Certificate = () => {
                 Certificate_ID,
                 flag: 3
             });
+            await fetchCertificates();
         } catch (error) {
             console.error("Error deleting certificate:", error);
         }
@@ -94,25 +108,9 @@ const Certificate = () => {
         }
     };
 
-    // Convert "YYYY-MM-DD" → "Aug 2024"
-    const formatMonthYear = (date) => {
-        if (!date) return "";
-        return new Date(date).toLocaleString("en-US", { month: "short", year: "numeric" });
-    };
-
-    // Convert "Aug 2024" → "YYYY-MM-DD"
-    const parseMonthYear = (monthYear) => {
-        if (!monthYear) return "";
-        const d = new Date(monthYear);
-        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-01`;
-    };
-
-    // For displaying certificate dates in UI
-    const formatDate = (date) => date;
-
     useEffect(() => {
         fetchCertificates();
-    }, [handleSubmit, handleDelete]);
+    }, []);
 
     return (
         <div className={CC.container}>

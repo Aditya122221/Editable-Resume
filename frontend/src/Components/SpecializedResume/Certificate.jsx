@@ -1,6 +1,11 @@
 import styles from '../../style.module.css';
 
 function Certificate({ certificates = [] }) {
+    const formatMonthYear = (date) => {
+        if (!date) return "";
+        const d = new Date(date);
+        return d.toLocaleString("en-US", { month: "short", year: "numeric" });
+    };
     return (
         <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Certificates</h2>
@@ -13,8 +18,8 @@ function Certificate({ certificates = [] }) {
                         </h3>
                         <span className={styles.date}>
                             {cert.endDate
-                                ? `${cert.startDate ? cert.startDate : "From"} - ${cert.endDate}`
-                                : `Since ${cert.startDate ? cert.startDate : "From"}`}
+                                ? `${cert.startDate ? formatMonthYear(cert.startDate) : "From"} - ${formatMonthYear(cert.endDate)}`
+                                : `Since ${cert.startDate ? formatMonthYear(cert.startDate) : "From"}`}
                         </span>
                     </div>
                     <p className={styles.certificateOrg}>

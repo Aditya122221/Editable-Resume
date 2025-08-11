@@ -66,35 +66,41 @@ const EducationSection = () => {
                 ? `Percentage: ${formData.marks}%`
                 : `CGPA: ${formData.marks}`;
 
+        // Convert to Date objects for backend
+        const startDateObj = new Date(formData.startDate);
+        const endDateObj = formData.endDate ? new Date(formData.endDate) : null;
+
         if (editingEducationId) {
             // Update
             const data = await apiCall({
                 Education_ID: editingEducationId,
                 institute: formData.institute,
-                startDate: formData.startDate,
-                endDate: formData.endDate,
+                startDate: startDateObj,
+                endDate: endDateObj,
                 field: formData.field,
                 marks: formattedMarks,
                 address: formData.address,
                 flag: 2
             });
             if (data?.status) {
-                alert(data.message)
+                alert(data.message);
+                await fetchEducationList();
             }
         } else {
             // Add
             const data = await apiCall({
                 Registration_ID: localStorage.getItem("EditableReg"),
                 institute: formData.institute,
-                startDate: formatMonthYear(formData.startDate),
-                endDate: formatMonthYear(formData.endDate),
+                startDate: startDateObj,
+                endDate: endDateObj,
                 field: formData.field,
                 marks: formattedMarks,
                 address: formData.address,
                 flag: 4
             });
             if (data?.status) {
-                alert(data.message)
+                alert(data.message);
+                await fetchEducationList();
             }
         }
 
@@ -117,8 +123,8 @@ const EducationSection = () => {
 
         setFormData({
             institute: education.institute,
-            startDate: parseMonthYear(education.startDate),
-            endDate: parseMonthYear(education.endDate),
+            startDate: education.startDate ? education.startDate.split('T')[0] : '',
+            endDate: education.endDate ? education.endDate.split('T')[0] : '',
             field: education.field,
             marksType: education.marks.includes("Percentage") ? 'percentage' : 'cgpa',
             marks: marksValue,
@@ -130,29 +136,26 @@ const EducationSection = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this education entry?')) {
             const data = await apiCall({ Education_ID: id, flag: 3 });
-            alert(data.message)
+            alert(data.message);
+            await fetchEducationList();
         }
     };
 
-    const formatMonthYear = (date) => {
-        if (!date) return "";
-        const d = new Date(date);
-        return d.toLocaleString("en-US", { month: "short", year: "numeric" });
-    };
-
-    const parseMonthYear = (monthYear) => {
-        if (!monthYear) return "";
-        const d = new Date(monthYear);
-        // pad month/day so it's "YYYY-MM-DD"
-        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-01`;
+    const fetchEducationList = async () => {
+        const data = await apiCall({ Registration_ID: localStorage.getItem("EditableReg"), flag: 1 });
+        if (data?.education) {
+            const formattedData = data.education.map(edu => ({
+                ...edu,
+                startDate: edu.startDate ? edu.startDate.split('T')[0] : '',
+                endDate: edu.endDate ? edu.endDate.split('T')[0] : ''
+            }));
+            setEducationList(formattedData);
+        }
     };
 
     useEffect(() => {
-        (async () => {
-            const data = await apiCall({ Registration_ID: localStorage.getItem("EditableReg"), flag: 1 });
-            if (data?.education) setEducationList(data.education);
-        })();
-    }, [handleDelete, handleSubmit]);
+        fetchEducationList();
+    }, []);
 
     return (
         <div className={styles.container}>
@@ -290,7 +293,7 @@ const EducationSection = () => {
                     <p className={styles.emptyMessage}>No education records added yet.</p>
                 ) : (
                     <div className={styles.educationGrid}>
-                        {educationList.map((education, index) => (
+                        {educationList.map((education) => (
                             <div key={education.Education_ID || education.id} className={styles.educationCard}>
                                 <div className={styles.cardHeader}>
                                     <h4 className={styles.instituteName}>{education.institute}</h4>

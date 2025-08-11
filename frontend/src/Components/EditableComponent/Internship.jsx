@@ -4,7 +4,6 @@ import II from '../../CSS/Internship.module.css';
 import Navbar from './Navbar';
 
 const InternshipSection = () => {
-    // Form state
     const [formData, setFormData] = useState({
         internshipType: '',
         companyName: '',
@@ -14,32 +13,20 @@ const InternshipSection = () => {
         technology: ''
     });
 
-    // Arrays for descriptions and technologies
     const [descriptions, setDescriptions] = useState([]);
     const [technologies, setTechnologies] = useState([]);
-
-    // List of all internships
     const [internships, setInternships] = useState([]);
-
-    // Edit mode state
     const [editingId, setEditingId] = useState(null);
 
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-    // Format date for backend ("MMM YYYY")
-    const formatDateForBackend = (dateString) => {
+    // Format for display (MMM YYYY)
+    const formatDateDisplay = (dateString) => {
         if (!dateString) return '';
-        const options = { year: 'numeric', month: 'short' };
-        return new Date(dateString).toLocaleDateString('en-US', options);
-    };
-
-    // Convert "MMM YYYY" to ISO "yyyy-mm-dd" for input value
-    const convertMMMYYYYToISO = (mmmYYYY) => {
-        if (!mmmYYYY) return '';
-        const [monthStr, year] = mmmYYYY.split(' ');
-        if (!monthStr || !year) return '';
-        const monthIndex = new Date(Date.parse(monthStr + " 1, 2020")).getMonth() + 1;
-        return `${year}-${monthIndex.toString().padStart(2, '0')}-01`;
+        return new Date(dateString).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short'
+        });
     };
 
     const fetchInternships = async () => {
@@ -53,14 +40,13 @@ const InternshipSection = () => {
                 Registration_ID,
                 flag: 1
             });
-            const data = response.data;
-            if (response.status === 200) {
-                const internshipsFromApi = data.internship.map(item => ({
+            if (response.status === 200 && response.data?.internship) {
+                const internshipsFromApi = response.data.internship.map(item => ({
                     Internship_ID: item.Internship_ID,
                     type: item.type,
                     companyName: item.companyName,
-                    startDate: convertMMMYYYYToISO(item.startDate),
-                    endDate: convertMMMYYYYToISO(item.endDate),
+                    startDate: item.startDate, // stored as ISO date
+                    endDate: item.endDate,
                     description: item.description || [],
                     technologies: item.technologies || []
                 }));
@@ -74,7 +60,6 @@ const InternshipSection = () => {
         }
     };
 
-    // Handle input change
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -83,7 +68,6 @@ const InternshipSection = () => {
         }));
     };
 
-    // Add description
     const addDescription = () => {
         if (formData.description.trim()) {
             setDescriptions(prev => [...prev, formData.description.trim()]);
@@ -91,7 +75,6 @@ const InternshipSection = () => {
         }
     };
 
-    // Add technology
     const addTechnology = () => {
         if (formData.technology.trim()) {
             setTechnologies(prev => [...prev, formData.technology.trim()]);
@@ -99,17 +82,14 @@ const InternshipSection = () => {
         }
     };
 
-    // Remove description
     const removeDescription = (index) => {
         setDescriptions(prev => prev.filter((_, i) => i !== index));
     };
 
-    // Remove technology
     const removeTechnology = (index) => {
         setTechnologies(prev => prev.filter((_, i) => i !== index));
     };
 
-    // Submit form (add/update)
     const handleSubmit = async () => {
         const Registration_ID = localStorage.getItem('EditableReg');
         if (!Registration_ID) {
@@ -117,19 +97,16 @@ const InternshipSection = () => {
             return;
         }
 
-        if (!formData.internshipType || !formData.companyName || !formData.startDate || !formData.endDate) {
+        if (!formData.internshipType || !formData.companyName || !formData.startDate) {
             alert('Please fill in all required fields');
             return;
         }
 
-        const startDateFormatted = formatDateForBackend(formData.startDate);
-        const endDateFormatted = formatDateForBackend(formData.endDate);
-
         const payload = {
             Registration_ID,
             companyName: formData.companyName,
-            startDate: startDateFormatted,
-            endDate: endDateFormatted,
+            startDate: new Date(formData.startDate), // store real Date
+            endDate: formData.endDate ? new Date(formData.endDate) : null,
             description: descriptions,
             technologies: technologies,
             type: formData.internshipType,
@@ -142,16 +119,15 @@ const InternshipSection = () => {
 
         try {
             const response = await axios.post(`${API_BASE_URL}/internship`, payload);
-            const data = response.data;
-
-            alert(data.message)
+            alert(response.data.message);
+            fetchInternships();
+            resetForm();
         } catch (error) {
             console.error('Submit internship error:', error);
             alert('Error submitting internship');
         }
     };
 
-    // Reset form
     const resetForm = () => {
         setFormData({
             internshipType: '',
@@ -166,13 +142,12 @@ const InternshipSection = () => {
         setEditingId(null);
     };
 
-    // Load internship for editing
     const handleEdit = (internship) => {
         setFormData({
             internshipType: internship.type,
             companyName: internship.companyName,
-            startDate: internship.startDate,
-            endDate: internship.endDate,
+            startDate: internship.startDate ? new Date(internship.startDate).toISOString().split("T")[0] : "",
+            endDate: internship.endDate ? new Date(internship.endDate).toISOString().split("T")[0] : "",
             description: '',
             technology: ''
         });
@@ -181,7 +156,6 @@ const InternshipSection = () => {
         setEditingId(internship.Internship_ID);
     };
 
-    // Delete internship
     const handleDelete = async (id) => {
         const Registration_ID = localStorage.getItem('EditableReg');
         if (!Registration_ID) {
@@ -197,27 +171,17 @@ const InternshipSection = () => {
                 Internship_ID: id,
                 flag: 3
             });
-            const data = response.data;
-
-            alert(data.message)
+            alert(response.data.message);
+            fetchInternships();
         } catch (error) {
             console.error('Delete internship error:', error);
             alert('Error deleting internship');
         }
     };
 
-    // Format date for display (MMM YYYY)
-    const formatDate = (dateString) => {
-        if (!dateString) return '';
-        return new Date(dateString).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short'
-        });
-    };
-
     useEffect(() => {
         fetchInternships();
-    }, [handleDelete, handleSubmit]);
+    }, [handleSubmit, handleDelete]);
 
     return (
         <div className={II.container}>
@@ -270,7 +234,7 @@ const InternshipSection = () => {
                         </div>
 
                         <div className={II.formGroup}>
-                            <label className={II.label}>End Date *</label>
+                            <label className={II.label}>End Date</label>
                             <input
                                 type="date"
                                 name="endDate"
@@ -292,11 +256,7 @@ const InternshipSection = () => {
                                 className={II.textarea}
                                 rows="3"
                             />
-                            <button
-                                type="button"
-                                onClick={addDescription}
-                                className={II.addButton}
-                            >
+                            <button type="button" onClick={addDescription} className={II.addButton}>
                                 Add
                             </button>
                         </div>
@@ -305,11 +265,7 @@ const InternshipSection = () => {
                                 {descriptions.map((desc, index) => (
                                     <span key={index} className={II.badge}>
                                         {desc}
-                                        <button
-                                            onClick={() => removeDescription(index)}
-                                            className={II.removeBadge}
-                                            aria-label="Remove description"
-                                        >
+                                        <button onClick={() => removeDescription(index)} className={II.removeBadge}>
                                             ×
                                         </button>
                                     </span>
@@ -329,11 +285,7 @@ const InternshipSection = () => {
                                 placeholder="Enter technology"
                                 className={II.input}
                             />
-                            <button
-                                type="button"
-                                onClick={addTechnology}
-                                className={II.addButton}
-                            >
+                            <button type="button" onClick={addTechnology} className={II.addButton}>
                                 Add
                             </button>
                         </div>
@@ -342,11 +294,7 @@ const InternshipSection = () => {
                                 {technologies.map((tech, index) => (
                                     <span key={index} className={II.badge}>
                                         {tech}
-                                        <button
-                                            onClick={() => removeTechnology(index)}
-                                            className={II.removeBadge}
-                                            aria-label="Remove technology"
-                                        >
+                                        <button onClick={() => removeTechnology(index)} className={II.removeBadge}>
                                             ×
                                         </button>
                                     </span>
@@ -356,17 +304,11 @@ const InternshipSection = () => {
                     </div>
 
                     <div className={II.formActions}>
-                        <button
-                            onClick={handleSubmit}
-                            className={II.submitButton}
-                        >
+                        <button onClick={handleSubmit} className={II.submitButton}>
                             {editingId ? 'Update Internship' : 'Add Internship'}
                         </button>
                         {editingId && (
-                            <button
-                                onClick={resetForm}
-                                className={II.cancelButton}
-                            >
+                            <button onClick={resetForm} className={II.cancelButton}>
                                 Cancel
                             </button>
                         )}
@@ -387,13 +329,11 @@ const InternshipSection = () => {
                             <div key={internship.Internship_ID} className={II.internshipCard}>
                                 <div className={II.cardHeader}>
                                     <h3 className={II.cardTitle}>{internship.companyName}</h3>
-                                    <span className={II.internshipType}>
-                                        {internship.type}
-                                    </span>
+                                    <span className={II.internshipType}>{internship.type}</span>
                                 </div>
 
                                 <div className={II.cardDates}>
-                                    {formatDate(internship.startDate)} - {formatDate(internship.endDate)}
+                                    {formatDateDisplay(internship.startDate)} - {formatDateDisplay(internship.endDate)}
                                 </div>
 
                                 {internship.description.length > 0 && (
@@ -401,9 +341,7 @@ const InternshipSection = () => {
                                         <h4 className={II.cardSectionTitle}>Descriptions</h4>
                                         <div className={II.cardBadges}>
                                             {internship.description.map((desc, index) => (
-                                                <span key={index} className={II.cardBadge}>
-                                                    {desc}
-                                                </span>
+                                                <span key={index} className={II.cardBadge}>{desc}</span>
                                             ))}
                                         </div>
                                     </div>
@@ -414,25 +352,17 @@ const InternshipSection = () => {
                                         <h4 className={II.cardSectionTitle}>Technologies</h4>
                                         <div className={II.cardBadges}>
                                             {internship.technologies.map((tech, index) => (
-                                                <span key={index} className={II.cardBadge}>
-                                                    {tech}
-                                                </span>
+                                                <span key={index} className={II.cardBadge}>{tech}</span>
                                             ))}
                                         </div>
                                     </div>
                                 )}
 
                                 <div className={II.cardActions}>
-                                    <button
-                                        onClick={() => handleEdit(internship)}
-                                        className={II.updateButton}
-                                    >
+                                    <button onClick={() => handleEdit(internship)} className={II.updateButton}>
                                         Update
                                     </button>
-                                    <button
-                                        onClick={() => handleDelete(internship.Internship_ID)}
-                                        className={II.deleteButton}
-                                    >
+                                    <button onClick={() => handleDelete(internship.Internship_ID)} className={II.deleteButton}>
                                         Delete
                                     </button>
                                 </div>

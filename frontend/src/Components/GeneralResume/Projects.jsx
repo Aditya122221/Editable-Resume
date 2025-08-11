@@ -1,6 +1,11 @@
 import GG from '../../GR.module.css';
 
 export default function Project({ project }) {
+    const formatMonthYear = (date) => {
+        if (!date) return "";
+        const d = new Date(date);
+        return d.toLocaleString("en-US", { month: "short", year: "numeric" });
+    };
     return (
         <div className={GG.tt}>
             <div className={GG.title}>PROJECTS</div>
@@ -18,7 +23,7 @@ export default function Project({ project }) {
                                 <div className={GG.ce}>{proj.name}</div>
                             </div>
                             <div className={GG.cf}>
-                                {proj.startDate} - {proj.endDate || "Present"}
+                                {formatMonthYear(proj.startDate)} - {formatMonthYear(proj.endDate) || "Present"}
                             </div>
                         </div>
 

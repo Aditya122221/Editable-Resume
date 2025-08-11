@@ -1,6 +1,11 @@
 import styles from '../../style.module.css'
 
 function Summer({ internship }) {
+    const formatMonthYear = (date) => {
+        if (!date) return "";
+        const d = new Date(date);
+        return d.toLocaleString("en-US", { month: "short", year: "numeric" });
+    };
     return (
         <div className={styles.section}>
             <h2 className={styles.sectionTitle}>{internship[0].type}</h2>
@@ -10,8 +15,8 @@ function Summer({ internship }) {
                         <h3 className={styles.jobTitle}>{item.companyName}</h3>
                         <span className={styles.date}>
                             {item.endDate
-                                ? `${item.startDate} - ${item.endDate}`
-                                : `Since ${item.startDate}`}
+                                ? `${formatMonthYear(item.startDate)} - ${formatMonthYear(item.endDate)}`
+                                : `Since ${formatMonthYear(item.startDate)}`}
                         </span>
                     </div>
                     {item.description && (

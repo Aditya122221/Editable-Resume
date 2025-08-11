@@ -1,6 +1,11 @@
 import styles from '../../style.module.css';
 
 function Project({ projects = [] }) {
+    const formatMonthYear = (date) => {
+        if (!date) return "";
+        const d = new Date(date);
+        return d.toLocaleString("en-US", { month: "short", year: "numeric" });
+    };
     return (
         <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Projects</h2>
@@ -19,8 +24,8 @@ function Project({ projects = [] }) {
                             </h3>
                             <span className={styles.date}>
                                 {proj.endDate
-                                    ? `${proj.startDate || "From"} - ${proj.endDate}`
-                                    : `Since ${proj.startDate || "From"}`}
+                                    ? `${formatMonthYear(proj.startDate) || "From"} - ${formatMonthYear(proj.endDate)}`
+                                    : `Since ${formatMonthYear(proj.startDate) || "From"}`}
                             </span>
                         </div>
                     </div>
@@ -33,10 +38,12 @@ function Project({ projects = [] }) {
                             : <li>Description goes here</li>}
                     </ul>
 
-                    <p className={styles.githubLink}>
-                        <strong>GitHub Repository Link:</strong>{" "}
-                        <a href={proj.githubLink} target='_blank' className={styles.linkgit}>{proj.githubLink}</a>
-                    </p>
+                    {proj.githubLink ? (
+                        <p className={styles.githubLink}>
+                            <strong>GitHub Repository Link:</strong>{" "}
+                            <a href={proj.githubLink} target='_blank' className={styles.linkgit}>{proj.githubLink}</a>
+                        </p>
+                    ) : ''}
                 </div>
             ))}
         </div>

@@ -26,14 +26,11 @@ function GeneralResume() {
 
         axios.post(`${import.meta.env.VITE_API_BASE_URL}/fetchalldata`, payload)
             .then((res) => {
-                const sortByDateDesc = (arr, dateKey) => {
-                    return [...arr].sort((a, b) => new Date(b[dateKey]) - new Date(a[dateKey]));
-                };
 
-                setEducation(sortByDateDesc(res.data.education || [], "startDate"));
-                setCertificate(sortByDateDesc(res.data.certificate || [], "startDate"));
-                setProject(sortByDateDesc(res.data.project || [], "startDate"));
-                setInternship(sortByDateDesc(res.data.internship || [], "startDate"));
+                setEducation(res.data.education || []);
+                setCertificate(res.data.certificate || []);
+                setProject(res.data.project || []);
+                setInternship(res.data.internship || []);
 
                 setProfile(res.data.profile || {});
                 setSkills(res.data.skill || {});

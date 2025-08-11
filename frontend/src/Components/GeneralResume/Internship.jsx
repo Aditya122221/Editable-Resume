@@ -1,6 +1,11 @@
 import GG from '../../GR.module.css'
 
 export default function Internship({ internship }) {
+    const formatMonthYear = (date) => {
+        if (!date) return "";
+        const d = new Date(date);
+        return d.toLocaleString("en-US", { month: "short", year: "numeric" });
+    };
 
     return (
         <div className={GG.tt}>
@@ -15,7 +20,7 @@ export default function Internship({ internship }) {
                                 <div className={GG.bd}>{intern.companyName}</div>
                             </div>
                             <div className={GG.be}>
-                                {intern.startDate} - {intern.endDate ? intern.endDate : 'Present'}
+                                {formatMonthYear(intern.startDate)} - {intern.endDate ? formatMonthYear(intern.endDate) : 'Present'}
                             </div>
                         </div>
 

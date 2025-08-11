@@ -1,6 +1,11 @@
 import styles from '../../style.module.css';
 
 function Education({ education = [] }) {
+    const formatMonthYear = (date) => {
+        if (!date) return "";
+        const d = new Date(date);
+        return d.toLocaleString("en-US", { month: "short", year: "numeric" });
+    };
     return (
         <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Education</h2>
@@ -13,8 +18,8 @@ function Education({ education = [] }) {
                         </h3>
                         <span className={styles.date}>
                             {edu.endDate
-                                ? `${edu.startDate} - ${edu.endDate}`
-                                : `Since ${edu.startDate}`}
+                                ? `${formatMonthYear(edu.startDate)} - ${formatMonthYear(edu.endDate)}`
+                                : `Since ${formatMonthYear(edu.startDate)}`}
                         </span>
                     </div>
                     <div className={styles.educationHeader}>

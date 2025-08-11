@@ -11,10 +11,10 @@ const InternshipSchema = new mongoose.Schema({
         type: String
     },
     startDate: {
-        type: String
+        type: Date
     },
     endDate: {
-        type: String
+        type: Date
     },
     description: {
         type: [String]
