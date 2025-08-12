@@ -24,7 +24,7 @@ function TechnicalSkill({ skills = {} }) {
                     <strong>Technologies/Frameworks:</strong> {renderList(technologies)}
                 </p>
                 <p className={styles.skillLine}>
-                    <strong>Skills:</strong> {renderList(skill)}
+                    <strong>Tools/Platforms:</strong> {renderList(skill)}
                 </p>
                 <p className={styles.skillLine}>
                     <strong>Soft Skills:</strong> {renderList(softskill)}

@@ -133,7 +133,7 @@ const SkillsSection = () => {
             <form onSubmit={handleSkill} className={SS.form}>
                 {renderSection('Languages', languageInput, setLanguageInput, languages, setLanguages)}
                 {renderSection('Technologies', technologyInput, setTechnologyInput, technologies, setTechnologies)}
-                {renderSection('Skills', skillInput, setSkillInput, skills, setSkills)}
+                {renderSection('Tools/Platforms', skillInput, setSkillInput, skills, setSkills)}
                 {renderSection('Soft Skills', softSkillInput, setSoftSkillInput, softSkills, setSoftSkills)}
 
                 <button type='submit'>Add Skills</button>
