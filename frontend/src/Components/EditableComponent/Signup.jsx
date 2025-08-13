@@ -69,8 +69,12 @@ const Signup = () => {
                 password: formData.password
             }
             axios.post(`${import.meta.env.VITE_API_BASE_URL}/signup`, payload).then((res) => {
-                console.log(res.data.message)
-                Navigate('/')
+                if (res.status === 200) {
+                    alert(res.data.message)
+                    Navigate('/')
+                } else {
+                    alert(res.data.message)
+                }
             }).catch((err) => {
                 console.log("signup error", err)
             })
