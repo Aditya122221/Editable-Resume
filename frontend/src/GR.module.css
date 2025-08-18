@@ -1,14 +1,9 @@
 .resume {
     display: flex;
     flex-direction: column;
-    padding-top: 75px;
-    padding-left: 50px;
-    padding-right: 50px;
 }
 
-.container {
-    padding: 85px;
-}
+.container {}
 
 .name {
     color: #2E3092;

@@ -66,7 +66,7 @@ function GeneralResume() {
 
             const fileName = `${safeName}_General_Resume.pdf`;
             const options = {
-                margin: 0.5,
+                margin: 1,
                 filename: fileName,
                 image: { type: "jpeg", quality: 0.98 },
                 html2canvas: { scale: 2 },
@@ -102,7 +102,7 @@ function GeneralResume() {
             const fileName = `${safeName}_General_Resume.pdf`;
 
             const options = {
-                margin: 0.5,
+                margin: 1,
                 filename: fileName,
                 image: { type: "jpeg", quality: 0.98 },
                 html2canvas: { scale: 2 },

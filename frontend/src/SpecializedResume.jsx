@@ -70,7 +70,7 @@ function SpecializedResume() {
 
       const fileName = `${safeName}_Specialized_Resume.pdf`;
       const options = {
-        margin: 0.5,
+        margin: 1,
         filename: fileName,
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2 },
@@ -99,7 +99,7 @@ function SpecializedResume() {
       const fileName = `${safeName}_Specialized_Resume.pdf`;
 
       const options = {
-        margin: 0.5,
+        margin: 1,
         filename: fileName,
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2 },
