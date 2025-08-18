@@ -16,7 +16,8 @@ function SpecializedResume() {
   const [project, setProject] = useState([])
   const [profile, setProfile] = useState({})
   const [skillls, setSkillls] = useState({})
-  const [internship, setInternship] = useState([])  // changed to array
+  const [internship, setInternship] = useState([])
+  const [isDownloadable, setIsDownloadable] = useState(false)
 
   useEffect(() => {
     const payload = { Registration_ID: localStorage.getItem("EditableReg") };
@@ -44,29 +45,82 @@ function SpecializedResume() {
       });
   }, []);
 
+  const handleDelete = (index, a) => {
+    if (a === 1) {
+      setInternship((prev) => prev.filter((_, i) => i !== index))
+    } else if (a === 2) {
+      setProject((prev) => prev.filter((_, i) => i !== index))
+    } else if (a === 3) {
+      setCertificate((prev) => prev.filter((_, i) => i !== index))
+    } else if (a === 4) {
+      setEducation((prev) => prev.filter((_, i) => i !== index))
+    }
+    console.log("Deleted")
+  }
+
+
+  const handlePreview = () => {
+    setIsDownloadable(true);
+
+    setTimeout(() => {
+      const resume = document.querySelector(`.${styles.resume}`);
+      const safeName = profile.fullName
+        ? profile.fullName.trim().replace(/\s+/g, "_")
+        : "Full_Name";
+
+      const fileName = `${safeName}_Specialized_Resume.pdf`;
+      const options = {
+        margin: 0.5,
+        filename: fileName,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "a3", orientation: "portrait" }
+      };
+
+      html2pdf()
+        .from(resume)
+        .set(options)
+        .outputPdf("bloburl")
+        .then((pdfUrl) => {
+          window.open(pdfUrl, "_blank");
+          setIsDownloadable(false);
+        });
+    }, 500);
+  };
 
   const handleDownload = () => {
-    const resume = document.querySelector(`.${styles.resume}`);
-    const safeName = profile.fullName
-      ? profile.fullName.trim().replace(/\s+/g, "_")
-      : "Full_Name";
+    setIsDownloadable(true);
 
-    const fileName = `${safeName}_Specialized_Resume.pdf`;
-    const options = {
-      margin: 0.5,
-      filename: fileName,
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "a3", orientation: "portrait" }
-    };
-    html2pdf().from(resume).set(options).save();
+    setTimeout(() => {
+      const resume = document.querySelector(`.${styles.resume}`);
+      const safeName = profile.fullName
+        ? profile.fullName.trim().replace(/\s+/g, "_")
+        : "Full_Name";
+      const fileName = `${safeName}_Specialized_Resume.pdf`;
+
+      const options = {
+        margin: 0.5,
+        filename: fileName,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "a3", orientation: "portrait" }
+      };
+
+      html2pdf()
+        .from(resume)
+        .set(options)
+        .save()
+        .catch((e) => console.error("PDF download failed:", e))
+        .finally(() => setIsDownloadable(false));
+    }, 100);
   };
+
 
   return (
     <>
       <Navbar />
       <button
-        onClick={handleDownload}
+        onClick={handlePreview}
         style={{
           padding: "8px 16px",
           backgroundColor: "#000",
@@ -77,21 +131,37 @@ function SpecializedResume() {
           marginBottom: "20px"
         }}
       >
+        Preview
+      </button>
+
+      <button
+        onClick={handleDownload}
+        style={{
+          padding: "8px 16px",
+          backgroundColor: "#000",
+          color: "#fff",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer",
+          marginBottom: "20px",
+          marginLeft: "20px"
+        }}
+      >
         Download PDF
       </button>
       <div className={styles.resume}>
         <Header profile={profile} />
 
         {Array.isArray(internship) && internship.length > 0 && (
-          <Summer internship={internship} />
+          <Summer internship={internship} onDelete={handleDelete} isDownloadable={isDownloadable} />
         )}
 
         {Array.isArray(project) && project.length > 0 && (
-          <Project projects={project} />
+          <Project projects={project} onDelete={handleDelete} isDownloadable={isDownloadable} />
         )}
 
         {Array.isArray(certificate) && certificate.length > 0 && (
-          <Certificate certificates={certificate} />
+          <Certificate certificates={certificate} onDelete={handleDelete} isDownloadable={isDownloadable} />
         )}
 
         {skillls && Object.keys(skillls).length > 0 && (
@@ -99,7 +169,7 @@ function SpecializedResume() {
         )}
 
         {Array.isArray(education) && education.length > 0 && (
-          <Education education={education} />
+          <Education education={education} onDelete={handleDelete} isDownloadable={isDownloadable} />
         )}
       </div>
     </>

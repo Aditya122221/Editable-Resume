@@ -268,3 +268,22 @@
 #ff {
     margin-left: 15px;
 }
+
+.print {
+    background: transparent;
+    border: 2px solid red;
+    padding: 4px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-left: 15px;
+
+    &:hover {
+        color: white;
+        background-color: red;
+    }
+}
+
+.noPrint {
+    display: none;
+}

@@ -1,11 +1,12 @@
 import GG from '../../GR.module.css';
 
-export default function Project({ project }) {
+export default function Project({ project, onDelete, isDownloadable }) {
     const formatMonthYear = (date) => {
         if (!date) return "";
         const d = new Date(date);
         return d.toLocaleString("en-US", { month: "short", year: "numeric" });
     };
+
     return (
         <div className={GG.tt}>
             <div className={GG.title}>PROJECTS</div>
@@ -22,15 +23,25 @@ export default function Project({ project }) {
                                 <i className="fa-solid fa-circle fa-2xs"></i>
                                 <div className={GG.ce}>{proj.name}</div>
                             </div>
+
                             <div className={GG.cf}>
-                                {formatMonthYear(proj.startDate)} - {formatMonthYear(proj.endDate) || "Present"}
+                                {formatMonthYear(proj.startDate)} -{" "}
+                                {proj.endDate ? formatMonthYear(proj.endDate) : "Present"}
+                                <button
+                                    className={isDownloadable ? GG.noPrint : GG.print}
+                                    onClick={() => onDelete && onDelete(index, 2)}
+                                >
+                                    ✕
+                                </button>
                             </div>
                         </div>
 
                         {proj.description && proj.description.length > 0 && (
                             <ul className={GG.pul}>
                                 {proj.description.map((desc, i) => (
-                                    <li key={i} className={GG.descrip}>{desc}</li>
+                                    <li key={i} className={GG.descrip}>
+                                        {desc}
+                                    </li>
                                 ))}
                             </ul>
                         )}

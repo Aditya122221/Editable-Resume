@@ -1,11 +1,12 @@
 import styles from '../../style.module.css';
 
-function Project({ projects = [] }) {
+function Project({ projects = [], onDelete, isDownloadable }) {
     const formatMonthYear = (date) => {
         if (!date) return "";
         const d = new Date(date);
         return d.toLocaleString("en-US", { month: "short", year: "numeric" });
     };
+
     return (
         <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Projects</h2>
@@ -22,11 +23,20 @@ function Project({ projects = [] }) {
                                         : "Technologies used"}
                                 </span>
                             </h3>
-                            <span className={styles.date}>
-                                {proj.endDate
-                                    ? `${formatMonthYear(proj.startDate) || "From"} - ${formatMonthYear(proj.endDate)}`
-                                    : `Since ${formatMonthYear(proj.startDate) || "From"}`}
-                            </span>
+                            <div className={styles.projectRight}>
+                                <span className={styles.date}>
+                                    {proj.endDate
+                                        ? `${formatMonthYear(proj.startDate) || "From"} - ${formatMonthYear(proj.endDate)}`
+                                        : `Since ${formatMonthYear(proj.startDate) || "From"}`}
+                                </span>
+
+                                <button
+                                    className={isDownloadable ? styles.noPrint : styles.print}
+                                    onClick={() => onDelete && onDelete(index, 2)}
+                                >
+                                    ✕
+                                </button>
+                            </div>
                         </div>
                     </div>
 

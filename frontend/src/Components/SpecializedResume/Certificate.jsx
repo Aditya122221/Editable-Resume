@@ -1,11 +1,12 @@
 import styles from '../../style.module.css';
 
-function Certificate({ certificates = [] }) {
+function Certificate({ certificates = [], onDelete, isDownloadable }) {
     const formatMonthYear = (date) => {
         if (!date) return "";
         const d = new Date(date);
         return d.toLocaleString("en-US", { month: "short", year: "numeric" });
     };
+
     return (
         <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Certificates</h2>
@@ -21,6 +22,12 @@ function Certificate({ certificates = [] }) {
                                 ? `${cert.startDate ? formatMonthYear(cert.startDate) : "From"} - ${formatMonthYear(cert.endDate)}`
                                 : `Since ${cert.startDate ? formatMonthYear(cert.startDate) : "From"}`}
                         </span>
+                        <button
+                            className={isDownloadable ? styles.noPrint : styles.print}
+                            onClick={() => onDelete && onDelete(index, 3)}
+                        >
+                            ✕
+                        </button>
                     </div>
                     <p className={styles.certificateOrg}>
                         {cert.company ? cert.company : "Platform Name"}
