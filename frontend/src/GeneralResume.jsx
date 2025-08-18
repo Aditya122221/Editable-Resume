@@ -104,8 +104,8 @@ function GeneralResume() {
             const options = {
                 margin: 1,
                 filename: fileName,
-                image: { type: "jpeg", quality: 0.5 },
-                html2canvas: { scale: 1 },
+                image: { type: "jpeg", quality: 0.98 },
+                html2canvas: { scale: 2 },
                 jsPDF: { unit: "in", format: "a3", orientation: "portrait" }
             };
 
