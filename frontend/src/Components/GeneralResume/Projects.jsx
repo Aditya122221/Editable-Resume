@@ -16,7 +16,7 @@ export default function Project({ project, onDelete, isDownloadable }) {
                 {project.map((proj, index) => (
                     <div
                         key={proj.id || index}
-                        className={`${GG.cb} ${index % 2 !== 0 ? GG.ggg : ""}`}
+                        className={`${GG.cb}`}
                     >
                         <div className={GG.cc}>
                             <div className={GG.cd}>
