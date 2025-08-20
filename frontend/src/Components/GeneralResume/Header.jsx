@@ -8,7 +8,7 @@ const Header = ({profile}) => (
                 <div className={GG.linkdin}>
                     <div className={GG.lindin1}>LinkedIn: </div>
                     <a
-                        href={profile.linkedin ? profile.linkedin : ""}
+                        href={profile.linkedinLink ? profile.linkedinLink : ""}
                         className={GG.linkdin2}
                         target="_blank"
                         rel="noopener noreferrer"
