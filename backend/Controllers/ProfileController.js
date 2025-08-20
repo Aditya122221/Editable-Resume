@@ -9,7 +9,8 @@ const ProfileController = async (req, res) => {
       address,
       phone,
       email,
-      linkedin,
+      linkedinLink,
+      linkedinP,
       github,
       flag
     } = req.body;
@@ -30,7 +31,7 @@ const ProfileController = async (req, res) => {
       const profile = await Profile.updateOne(
         { Profile_ID },
         {
-          $set: { fullName, address, phone, email, linkedin, github }
+          $set: { fullName, address, phone, email, linkedinLink, linkedinP, github }
         }
       );
 
@@ -68,7 +69,8 @@ const ProfileController = async (req, res) => {
         address,
         phone,
         email,
-        linkedin,
+        linkedinLink,
+        linkedinP,
         github
       });
 

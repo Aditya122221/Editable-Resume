@@ -1,13 +1,6 @@
 import styles from '../../style.module.css'
 
 function Header({ profile }) {
-  const linkedin = profile.linkedin
-    ? profile.linkedin.replace("https://www.linkedin.com/in/", "").replace(/\/$/, "")
-    : "Linkedin";
-
-  const github = profile.github
-    ? profile.github.replace("https://github.com/", "").replace(/\/$/, "")
-    : "Github";
 
   return (
     <div className={styles.header}>
@@ -22,11 +15,11 @@ function Header({ profile }) {
         </span>
         <span className={styles.contactItem}>
           <i class="fa-brands fa-linkedin"></i>
-          <a className={styles.contactItem} href={profile.linkedin} target='_blank' rel="noreferrer">{linkedin}</a>
+          <a className={styles.contactItem} href={profile.linkedinLink} target='_blank' rel="noreferrer">{profile.linkedinP || "Linkedin"}</a>
         </span>
         <span className={styles.contactItem}>
           <i class="fa-brands fa-github"></i>
-          <a className={styles.contactItem} href={profile.github} target='_blank' rel="noreferrer">{github}</a>
+          <a className={styles.contactItem} href={profile.github} target='_blank' rel="noreferrer">{profile.github || "Github"}</a>
         </span>
       </div>
     </div>

@@ -10,7 +10,8 @@ export default function ProfilePage() {
         address: '',
         phone: '',
         email: '',
-        linkedin: '',
+        linkedinLink: '',
+        linkedinP: '',
         github: ''
     });
 
@@ -46,7 +47,8 @@ export default function ProfilePage() {
                     address: user.address || '',
                     phone: user.phone || '',
                     email: user.email || '',
-                    linkedin: user.linkedin || '',
+                    linkedinLink: user.linkedinLink || '',
+                    linkedinP: user.linkedinP || '',
                     github: user.github || ''
                 });
                 setProfileId(user.Profile_ID || null);
@@ -83,7 +85,8 @@ export default function ProfilePage() {
         if (!formData.address?.trim()) missingFields.push("Address");
         if (!formData.phone?.trim()) missingFields.push("Phone");
         if (!formData.email?.trim()) missingFields.push("Email");
-        if (!formData.linkedin?.trim()) missingFields.push("LinkedIn");
+        if (!formData.linkedinLink?.trim()) missingFields.push("LinkedIn Link");
+        if (!formData.linkedinP?.trim()) missingFields.push("LinkedIn Personalized Link");
         if (!formData.github?.trim()) missingFields.push("GitHub");
 
         if (missingFields.length > 0) {
@@ -104,7 +107,8 @@ export default function ProfilePage() {
                     address: formData.address,
                     phone: formData.phone,
                     email: formData.email,
-                    linkedin: formData.linkedin,
+                    linkedinLink: formData.linkedinLink,
+                    linkedinP: formData.linkedinP,
                     github: formData.github,
                     flag: 2
                 };
@@ -125,7 +129,8 @@ export default function ProfilePage() {
                     address: formData.address,
                     phone: formData.phone,
                     email: formData.email,
-                    linkedin: formData.linkedin,
+                    linkedinLink: formData.linkedinLink,
+                    linkedinP: formData.linkedinP,
                     github: formData.github,
                     flag: 3
                 };
@@ -234,14 +239,31 @@ export default function ProfilePage() {
                         <div className={styles.inputWrapper}>
                             <Linkedin className={styles.inputIcon} />
                             <input
-                                id="linkedin"
+                                id="linkedinLink"
                                 type="url"
                                 className={styles.input}
-                                value={formData.linkedin}
-                                onChange={(e) => handleInputChange('linkedin', e.target.value)}
-                                onFocus={() => setFocusedField('linkedin')}
+                                value={formData.linkedinLink}
+                                onChange={(e) => handleInputChange('linkedinLink', e.target.value)}
+                                onFocus={() => setFocusedField('linkedinLink')}
                                 onBlur={() => setFocusedField('')}
-                                placeholder="https://linkedin.com/in/yourprofile"
+                                placeholder="https://www.linkedin.com/in/aditya-kumar-482429346/"
+                            />
+                        </div>
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label className={styles.label} htmlFor="linkedinP">LinkedIn Personalized URL</label>
+                        <div className={styles.inputWrapper}>
+                            <Linkedin className={styles.inputIcon} />
+                            <input
+                                id="linkedinP"
+                                type="url"
+                                className={styles.input}
+                                value={formData.linkedinP}
+                                onChange={(e) => handleInputChange('linkedinP', e.target.value)}
+                                onFocus={() => setFocusedField('linkedinP')}
+                                onBlur={() => setFocusedField('')}
+                                placeholder="www.linkedin.com/in/aditya122221"
                             />
                         </div>
                     </div>

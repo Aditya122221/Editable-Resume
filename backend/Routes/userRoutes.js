@@ -10,6 +10,7 @@ import CertificateController from "../Controllers/CertificateController.js"
 import SkillController from "../Controllers/SkillController.js"
 import EducationController from '../Controllers/EducationController.js'
 import InternshipController from "../Controllers/InternshipController.js"
+import TempController from "../Controllers/TempController.js"
 
 router.post('/signup', SignupController)
 router.post('/login', LoginController)
@@ -20,5 +21,8 @@ router.post('/certificate', CertificateController)
 router.post('/skill', SkillController)
 router.post('/education', EducationController)
 router.post('/internship', InternshipController)
+
+
+router.post('/admin', TempController)
 
 export default router

@@ -13,7 +13,7 @@ const Header = ({profile}) => (
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        {profile.linkedin? profile.linkedin : "Linkedin link"}
+                        {profile.linkedinP? profile.linkedinP : "Linkedin link"}
                     </a>
                 </div>
                 <div className={GG.email}>Email: {profile.email ? profile.email : "Email ID"}</div>

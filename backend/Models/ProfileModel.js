@@ -19,7 +19,10 @@ const ProfileSchema = new mongoose.Schema({
     email: {
         type: String
     },
-    linkedin: {
+    linkedinLink: {
+        type: String
+    },
+    linkedinP: {
         type: String
     },
     github: {
