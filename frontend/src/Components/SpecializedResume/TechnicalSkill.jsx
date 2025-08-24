@@ -17,18 +17,18 @@ function TechnicalSkill({ skills = {} }) {
         <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Technical Skills</h2>
             <div className={styles.skillsContainer}>
-                <p className={styles.skillLine}>
+                {language ? <p className={styles.skillLine}>
                     <strong>Languages:</strong> {renderList(language)}
-                </p>
-                <p className={styles.skillLine}>
+                </p> : ''}
+                {technologies ? <p className={styles.skillLine}>
                     <strong>Technologies/Frameworks:</strong> {renderList(technologies)}
-                </p>
-                <p className={styles.skillLine}>
+                </p> : ''}
+                {skill ? <p className={styles.skillLine}>
                     <strong>Tools/Platforms:</strong> {renderList(skill)}
-                </p>
-                <p className={styles.skillLine}>
+                </p> : ''}
+                {softskill ? <p className={styles.skillLine}>
                     <strong>Soft Skills:</strong> {renderList(softskill)}
-                </p>
+                </p> : ''}
             </div>
         </div>
     );
