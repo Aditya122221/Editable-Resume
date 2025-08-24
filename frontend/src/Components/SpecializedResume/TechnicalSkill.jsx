@@ -11,7 +11,7 @@ function TechnicalSkill({ skills = {} }) {
                     {index < items.length - 1 && ", "}
                 </span>
             ))
-            : "Not specified";
+            : "";
 
     return (
         <div className={styles.section}>
