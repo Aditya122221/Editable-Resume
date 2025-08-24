@@ -17,16 +17,16 @@ function TechnicalSkill({ skills = {} }) {
         <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Technical Skills</h2>
             <div className={styles.skillsContainer}>
-                {language ? <p className={styles.skillLine}>
+                {language.length !== 0 ? <p className={styles.skillLine}>
                     <strong>Languages:</strong> {renderList(language)}
                 </p> : ''}
-                {technologies ? <p className={styles.skillLine}>
+                {technologies.length !== 0 ? <p className={styles.skillLine}>
                     <strong>Technologies/Frameworks:</strong> {renderList(technologies)}
                 </p> : ''}
-                {skill ? <p className={styles.skillLine}>
+                {skill.length !== 0 ? <p className={styles.skillLine}>
                     <strong>Tools/Platforms:</strong> {renderList(skill)}
                 </p> : ''}
-                {softskill ? <p className={styles.skillLine}>
+                {softskill.length !== 0 ? <p className={styles.skillLine}>
                     <strong>Soft Skills:</strong> {renderList(softskill)}
                 </p> : ''}
             </div>
