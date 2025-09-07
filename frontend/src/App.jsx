@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoute, PublicRoute } from "./AuthRoute";
 import GeneralResume from "./GeneralResume";
 import Internship from "./Components/EditableComponent/Internship";
+import AboutUs from "./Components/AboutUs";
 
 function App() {
 	return (
@@ -95,6 +96,14 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<Internship />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path="/about"
+					element={
+						<ProtectedRoute>
+							<AboutUs />
 						</ProtectedRoute>
 					}
 				/>
