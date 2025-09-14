@@ -116,7 +116,8 @@ const Navbar = () => {
         'Skill',
         'Education',
         'Internship',
-        'Achievements'
+        'Achievements',
+        'About'
     ];
 
     // Check if screen is mobile size

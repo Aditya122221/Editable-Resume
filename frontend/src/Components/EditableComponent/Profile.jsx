@@ -155,148 +155,151 @@ export default function ProfilePage() {
     };
 
     return (
-        <div className={styles.container}>
+        <>
             <Navbar />
-            <div className={styles.profileCard}>
-                <div className={styles.header}>
-                    <h1 className={styles.headerTitle}>
-                        {isExistingProfile ? 'Update Profile' : 'Add Profile'}
-                    </h1>
-                    <p className={styles.headerSubtitle}>Update your personal information</p>
-                </div>
+            <div className={styles.container}>
 
-                <div className={styles.form}>
-                    <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor="fullName">Full Name</label>
-                        <div className={styles.inputWrapper}>
-                            <User className={styles.inputIcon} />
-                            <input
-                                id="fullName"
-                                type="text"
-                                className={styles.input}
-                                value={formData.fullName}
-                                onChange={(e) => handleInputChange('fullName', e.target.value)}
-                                onFocus={() => setFocusedField('fullName')}
-                                onBlur={() => setFocusedField('')}
-                                placeholder="Enter your full name"
-                            />
-                        </div>
+                <div className={styles.profileCard}>
+                    <div className={styles.header}>
+                        <h1 className={styles.headerTitle}>
+                            {isExistingProfile ? 'Update Profile' : 'Add Profile'}
+                        </h1>
+                        <p className={styles.headerSubtitle}>Update your personal information</p>
                     </div>
 
-                    <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor="address">Address</label>
-                        <div className={styles.inputWrapper}>
-                            <MapPin className={styles.inputIcon} />
-                            <textarea
-                                id="address"
-                                className={styles.textarea}
-                                value={formData.address}
-                                onChange={(e) => handleInputChange('address', e.target.value)}
-                                onFocus={() => setFocusedField('address')}
-                                onBlur={() => setFocusedField('')}
-                                placeholder="Enter your address"
-                                rows={3}
-                            />
+                    <div className={styles.form}>
+                        <div className={styles.formGroup}>
+                            <label className={styles.label} htmlFor="fullName">Full Name</label>
+                            <div className={styles.inputWrapper}>
+                                <User className={styles.inputIcon} />
+                                <input
+                                    id="fullName"
+                                    type="text"
+                                    className={styles.input}
+                                    value={formData.fullName}
+                                    onChange={(e) => handleInputChange('fullName', e.target.value)}
+                                    onFocus={() => setFocusedField('fullName')}
+                                    onBlur={() => setFocusedField('')}
+                                    placeholder="Enter your full name"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor="phone">Phone Number</label>
-                        <div className={styles.inputWrapper}>
-                            <Phone className={styles.inputIcon} />
-                            <input
-                                id="phone"
-                                type="tel"
-                                className={styles.input}
-                                value={formData.phone}
-                                onChange={(e) => handleInputChange('phone', e.target.value)}
-                                onFocus={() => setFocusedField('phone')}
-                                onBlur={() => setFocusedField('')}
-                                placeholder="Enter your phone number"
-                            />
+                        <div className={styles.formGroup}>
+                            <label className={styles.label} htmlFor="address">Address</label>
+                            <div className={styles.inputWrapper}>
+                                <MapPin className={styles.inputIcon} />
+                                <textarea
+                                    id="address"
+                                    className={styles.textarea}
+                                    value={formData.address}
+                                    onChange={(e) => handleInputChange('address', e.target.value)}
+                                    onFocus={() => setFocusedField('address')}
+                                    onBlur={() => setFocusedField('')}
+                                    placeholder="Enter your address"
+                                    rows={3}
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor="email">Email</label>
-                        <div className={styles.inputWrapper}>
-                            <Mail className={styles.inputIcon} />
-                            <input
-                                id="email"
-                                type="email"
-                                className={styles.input}
-                                value={formData.email}
-                                onChange={(e) => handleInputChange('email', e.target.value)}
-                                onFocus={() => setFocusedField('email')}
-                                onBlur={() => setFocusedField('')}
-                                placeholder="Enter your email address"
-                            />
+                        <div className={styles.formGroup}>
+                            <label className={styles.label} htmlFor="phone">Phone Number</label>
+                            <div className={styles.inputWrapper}>
+                                <Phone className={styles.inputIcon} />
+                                <input
+                                    id="phone"
+                                    type="tel"
+                                    className={styles.input}
+                                    value={formData.phone}
+                                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                                    onFocus={() => setFocusedField('phone')}
+                                    onBlur={() => setFocusedField('')}
+                                    placeholder="Enter your phone number"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor="linkedin">LinkedIn URL</label>
-                        <div className={styles.inputWrapper}>
-                            <Linkedin className={styles.inputIcon} />
-                            <input
-                                id="linkedinLink"
-                                type="url"
-                                className={styles.input}
-                                value={formData.linkedinLink}
-                                onChange={(e) => handleInputChange('linkedinLink', e.target.value)}
-                                onFocus={() => setFocusedField('linkedinLink')}
-                                onBlur={() => setFocusedField('')}
-                                placeholder="https://www.linkedin.com/in/aditya-kumar-482429346/"
-                            />
+                        <div className={styles.formGroup}>
+                            <label className={styles.label} htmlFor="email">Email</label>
+                            <div className={styles.inputWrapper}>
+                                <Mail className={styles.inputIcon} />
+                                <input
+                                    id="email"
+                                    type="email"
+                                    className={styles.input}
+                                    value={formData.email}
+                                    onChange={(e) => handleInputChange('email', e.target.value)}
+                                    onFocus={() => setFocusedField('email')}
+                                    onBlur={() => setFocusedField('')}
+                                    placeholder="Enter your email address"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor="linkedinP">LinkedIn Personalized URL</label>
-                        <div className={styles.inputWrapper}>
-                            <Linkedin className={styles.inputIcon} />
-                            <input
-                                id="linkedinP"
-                                type="url"
-                                className={styles.input}
-                                value={formData.linkedinP}
-                                onChange={(e) => handleInputChange('linkedinP', e.target.value)}
-                                onFocus={() => setFocusedField('linkedinP')}
-                                onBlur={() => setFocusedField('')}
-                                placeholder="www.linkedin.com/in/aditya122221"
-                            />
+                        <div className={styles.formGroup}>
+                            <label className={styles.label} htmlFor="linkedin">LinkedIn URL</label>
+                            <div className={styles.inputWrapper}>
+                                <Linkedin className={styles.inputIcon} />
+                                <input
+                                    id="linkedinLink"
+                                    type="url"
+                                    className={styles.input}
+                                    value={formData.linkedinLink}
+                                    onChange={(e) => handleInputChange('linkedinLink', e.target.value)}
+                                    onFocus={() => setFocusedField('linkedinLink')}
+                                    onBlur={() => setFocusedField('')}
+                                    placeholder="https://www.linkedin.com/in/aditya-kumar-482429346/"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor="github">GitHub URL</label>
-                        <div className={styles.inputWrapper}>
-                            <Github className={styles.inputIcon} />
-                            <input
-                                id="github"
-                                type="url"
-                                className={styles.input}
-                                value={formData.github}
-                                onChange={(e) => handleInputChange('github', e.target.value)}
-                                onFocus={() => setFocusedField('github')}
-                                onBlur={() => setFocusedField('')}
-                                placeholder="https://github.com/yourusername"
-                            />
+                        <div className={styles.formGroup}>
+                            <label className={styles.label} htmlFor="linkedinP">LinkedIn Personalized URL</label>
+                            <div className={styles.inputWrapper}>
+                                <Linkedin className={styles.inputIcon} />
+                                <input
+                                    id="linkedinP"
+                                    type="url"
+                                    className={styles.input}
+                                    value={formData.linkedinP}
+                                    onChange={(e) => handleInputChange('linkedinP', e.target.value)}
+                                    onFocus={() => setFocusedField('linkedinP')}
+                                    onBlur={() => setFocusedField('')}
+                                    placeholder="www.linkedin.com/in/aditya122221"
+                                />
+                            </div>
                         </div>
+
+                        <div className={styles.formGroup}>
+                            <label className={styles.label} htmlFor="github">GitHub URL</label>
+                            <div className={styles.inputWrapper}>
+                                <Github className={styles.inputIcon} />
+                                <input
+                                    id="github"
+                                    type="url"
+                                    className={styles.input}
+                                    value={formData.github}
+                                    onChange={(e) => handleInputChange('github', e.target.value)}
+                                    onFocus={() => setFocusedField('github')}
+                                    onBlur={() => setFocusedField('')}
+                                    placeholder="https://github.com/yourusername"
+                                />
+                            </div>
+                        </div>
+
+                        {message && <div className={styles.message}>{message}</div>}
+
+                        <button
+                            type="button"
+                            onClick={handleSubmit}
+                            className={styles.saveButton}
+                            disabled={loading}
+                        >
+                            {loading ? 'Saving...' : (isExistingProfile ? 'Update Profile' : 'Add Profile')}
+                        </button>
                     </div>
-
-                    {message && <div className={styles.message}>{message}</div>}
-
-                    <button
-                        type="button"
-                        onClick={handleSubmit}
-                        className={styles.saveButton}
-                        disabled={loading}
-                    >
-                        {loading ? 'Saving...' : (isExistingProfile ? 'Update Profile' : 'Add Profile')}
-                    </button>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

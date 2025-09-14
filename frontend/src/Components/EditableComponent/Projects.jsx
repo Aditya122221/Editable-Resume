@@ -173,205 +173,206 @@ const Projects = () => {
     }, [handleAddProject, handleDeleteProject]);
 
     return (
-        <div className={PP.container}>
-            <Navbar />
-            <div className={PP.formSection}>
-                <h2 className={PP.sectionTitle}>
-                    {editingId ? 'Update Project' : 'Add New Project'}
-                </h2>
+        <><Navbar />
+            <div className={PP.container}>
+                <div className={PP.formSection}>
+                    <h2 className={PP.sectionTitle}>
+                        {editingId ? 'Update Project' : 'Add New Project'}
+                    </h2>
 
-                <div className={PP.form}>
-                    <div className={PP.inputGroup}>
-                        <label className={PP.label}>Name *</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            className={PP.input}
-                            placeholder="Enter project name"
-                            required
-                        />
-                    </div>
-
-                    <div className={PP.inputGroup}>
-                        <label className={PP.label}>Technologies</label>
-                        <div className={PP.inputWithButton}>
+                    <div className={PP.form}>
+                        <div className={PP.inputGroup}>
+                            <label className={PP.label}>Name *</label>
                             <input
                                 type="text"
-                                name="technologies"
-                                value={formData.technologies}
+                                name="name"
+                                value={formData.name}
                                 onChange={handleInputChange}
                                 className={PP.input}
-                                placeholder="Enter technology"
+                                placeholder="Enter project name"
+                                required
                             />
-                            <button type="button" onClick={addTechnology} className={PP.addButton}>
-                                Add
-                            </button>
                         </div>
-                        {technologiesList.length > 0 && (
-                            <div className={PP.tagContainer}>
-                                {technologiesList.map((tech, index) => (
-                                    <span key={index} className={PP.tag}>
-                                        {tech}
-                                        <button type="button" onClick={() => removeTechnology(index)} className={PP.removeTag}>
-                                            ×
-                                        </button>
-                                    </span>
-                                ))}
-                            </div>
-                        )}
-                    </div>
 
-                    <div className={PP.dateGroup}>
                         <div className={PP.inputGroup}>
-                            <label className={PP.label}>Start Date</label>
-                            <input
-                                type="date"
-                                name="startDate"
-                                value={formData.startDate}
-                                onChange={handleInputChange}
-                                className={PP.input}
-                            />
-                        </div>
-                        <div className={PP.inputGroup}>
-                            <label className={PP.label}>End Date</label>
-                            <input
-                                type="date"
-                                name="endDate"
-                                value={formData.endDate}
-                                onChange={handleInputChange}
-                                className={PP.input}
-                            />
-                        </div>
-                    </div>
-
-                    <div className={PP.inputGroup}>
-                        <label className={PP.label}>Description</label>
-                        <div className={PP.inputWithButton}>
-                            <textarea
-                                name="description"
-                                value={formData.description}
-                                onChange={handleInputChange}
-                                className={PP.textarea}
-                                placeholder="Enter description point"
-                                rows="3"
-                            />
-                            <button type="button" onClick={addDescription} className={PP.addButton}>
-                                Add
-                            </button>
-                        </div>
-                        {descriptionsList.length > 0 && (
-                            <div className={PP.descriptionList}>
-                                {descriptionsList.map((desc, index) => (
-                                    <div key={index} className={PP.descriptionItem}>
-                                        <span>• {desc}</span>
-                                        <button type="button" onClick={() => removeDescription(index)} className={PP.removeDescription}>
-                                            ×
-                                        </button>
-                                    </div>
-                                ))}
+                            <label className={PP.label}>Technologies</label>
+                            <div className={PP.inputWithButton}>
+                                <input
+                                    type="text"
+                                    name="technologies"
+                                    value={formData.technologies}
+                                    onChange={handleInputChange}
+                                    className={PP.input}
+                                    placeholder="Enter technology"
+                                />
+                                <button type="button" onClick={addTechnology} className={PP.addButton}>
+                                    Add
+                                </button>
                             </div>
-                        )}
-                    </div>
+                            {technologiesList.length > 0 && (
+                                <div className={PP.tagContainer}>
+                                    {technologiesList.map((tech, index) => (
+                                        <span key={index} className={PP.tag}>
+                                            {tech}
+                                            <button type="button" onClick={() => removeTechnology(index)} className={PP.removeTag}>
+                                                ×
+                                            </button>
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
 
-                    <div className={PP.inputGroup}>
-                        <label className={PP.label}>GitHub Link</label>
-                        <input
-                            type="url"
-                            name="githubLink"
-                            value={formData.githubLink}
-                            onChange={handleInputChange}
-                            className={PP.input}
-                            placeholder="https://github.com/username/repository"
-                        />
-                    </div>
+                        <div className={PP.dateGroup}>
+                            <div className={PP.inputGroup}>
+                                <label className={PP.label}>Start Date</label>
+                                <input
+                                    type="date"
+                                    name="startDate"
+                                    value={formData.startDate}
+                                    onChange={handleInputChange}
+                                    className={PP.input}
+                                />
+                            </div>
+                            <div className={PP.inputGroup}>
+                                <label className={PP.label}>End Date</label>
+                                <input
+                                    type="date"
+                                    name="endDate"
+                                    value={formData.endDate}
+                                    onChange={handleInputChange}
+                                    className={PP.input}
+                                />
+                            </div>
+                        </div>
 
-                    <div className={PP.buttonGroup}>
-                        <button type="button" onClick={handleAddProject} className={PP.submitButton}>
-                            {editingId ? 'Update Project' : 'Add Project'}
-                        </button>
-                        {editingId && (
-                            <button type="button" onClick={handleCancelEdit} className={PP.cancelButton}>
-                                Cancel
+                        <div className={PP.inputGroup}>
+                            <label className={PP.label}>Description</label>
+                            <div className={PP.inputWithButton}>
+                                <textarea
+                                    name="description"
+                                    value={formData.description}
+                                    onChange={handleInputChange}
+                                    className={PP.textarea}
+                                    placeholder="Enter description point"
+                                    rows="3"
+                                />
+                                <button type="button" onClick={addDescription} className={PP.addButton}>
+                                    Add
+                                </button>
+                            </div>
+                            {descriptionsList.length > 0 && (
+                                <div className={PP.descriptionList}>
+                                    {descriptionsList.map((desc, index) => (
+                                        <div key={index} className={PP.descriptionItem}>
+                                            <span>• {desc}</span>
+                                            <button type="button" onClick={() => removeDescription(index)} className={PP.removeDescription}>
+                                                ×
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        <div className={PP.inputGroup}>
+                            <label className={PP.label}>GitHub Link</label>
+                            <input
+                                type="url"
+                                name="githubLink"
+                                value={formData.githubLink}
+                                onChange={handleInputChange}
+                                className={PP.input}
+                                placeholder="https://github.com/username/repository"
+                            />
+                        </div>
+
+                        <div className={PP.buttonGroup}>
+                            <button type="button" onClick={handleAddProject} className={PP.submitButton}>
+                                {editingId ? 'Update Project' : 'Add Project'}
                             </button>
-                        )}
+                            {editingId && (
+                                <button type="button" onClick={handleCancelEdit} className={PP.cancelButton}>
+                                    Cancel
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className={PP.projectsSection}>
-                <h2 className={PP.sectionTitle}>Projects ({projects.length})</h2>
+                <div className={PP.projectsSection}>
+                    <h2 className={PP.sectionTitle}>Projects ({projects.length})</h2>
 
-                {projects.length === 0 ? (
-                    <div className={PP.emptyState}>
-                        <p>No projects added yet. Create your first project above!</p>
-                    </div>
-                ) : (
-                    <div className={PP.projectGrid}>
-                        {projects.map((project) => (
-                            <div key={project.Project_ID} className={PP.projectCard}>
-                                <div className={PP.cardHeader}>
-                                    <h3 className={PP.projectName}>{project.name}</h3>
-                                    <div className={PP.cardActions}>
-                                        <button onClick={() => handleUpdateProject(project)} className={PP.updateButton}>
-                                            Update
-                                        </button>
-                                        <button onClick={() => handleDeleteProject(project.Project_ID)} className={PP.deleteButton}>
-                                            Delete
-                                        </button>
-                                    </div>
-                                </div>
-
-                                {project.technologies.length > 0 && (
-                                    <div className={PP.cardSection}>
-                                        <h4 className={PP.sectionLabel}>Technologies:</h4>
-                                        <div className={PP.tagContainer}>
-                                            {project.technologies.map((tech, index) => (
-                                                <span key={index} className={PP.techTag}>
-                                                    {tech}
-                                                </span>
-                                            ))}
+                    {projects.length === 0 ? (
+                        <div className={PP.emptyState}>
+                            <p>No projects added yet. Create your first project above!</p>
+                        </div>
+                    ) : (
+                        <div className={PP.projectGrid}>
+                            {projects.map((project) => (
+                                <div key={project.Project_ID} className={PP.projectCard}>
+                                    <div className={PP.cardHeader}>
+                                        <h3 className={PP.projectName}>{project.name}</h3>
+                                        <div className={PP.cardActions}>
+                                            <button onClick={() => handleUpdateProject(project)} className={PP.updateButton}>
+                                                Update
+                                            </button>
+                                            <button onClick={() => handleDeleteProject(project.Project_ID)} className={PP.deleteButton}>
+                                                Delete
+                                            </button>
                                         </div>
                                     </div>
-                                )}
 
-                                {(project.startDate || project.endDate) && (
-                                    <div className={PP.cardSection}>
-                                        <h4 className={PP.sectionLabel}>Duration:</h4>
-                                        <p className={PP.dateRange}>
-                                            {project.startDate && new Date(project.startDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
-                                            {project.startDate && project.endDate && ' - '}
-                                            {project.endDate && new Date(project.endDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
-                                        </p>
-                                    </div>
-                                )}
+                                    {project.technologies.length > 0 && (
+                                        <div className={PP.cardSection}>
+                                            <h4 className={PP.sectionLabel}>Technologies:</h4>
+                                            <div className={PP.tagContainer}>
+                                                {project.technologies.map((tech, index) => (
+                                                    <span key={index} className={PP.techTag}>
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
 
-                                {project.description.length > 0 && (
-                                    <div className={PP.cardSection}>
-                                        <h4 className={PP.sectionLabel}>Description:</h4>
-                                        <ul className={PP.descriptionPoints}>
-                                            {project.description.map((desc, index) => (
-                                                <li key={index}>{desc}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
+                                    {(project.startDate || project.endDate) && (
+                                        <div className={PP.cardSection}>
+                                            <h4 className={PP.sectionLabel}>Duration:</h4>
+                                            <p className={PP.dateRange}>
+                                                {project.startDate && new Date(project.startDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                                                {project.startDate && project.endDate && ' - '}
+                                                {project.endDate && new Date(project.endDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                                            </p>
+                                        </div>
+                                    )}
 
-                                {project.githubLink && (
-                                    <div className={PP.cardSection}>
-                                        <h4 className={PP.sectionLabel}>GitHub:</h4>
-                                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className={PP.githubLink}>
-                                            View Repository
-                                        </a>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                )}
+                                    {project.description.length > 0 && (
+                                        <div className={PP.cardSection}>
+                                            <h4 className={PP.sectionLabel}>Description:</h4>
+                                            <ul className={PP.descriptionPoints}>
+                                                {project.description.map((desc, index) => (
+                                                    <li key={index}>{desc}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+
+                                    {project.githubLink && (
+                                        <div className={PP.cardSection}>
+                                            <h4 className={PP.sectionLabel}>GitHub:</h4>
+                                            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className={PP.githubLink}>
+                                                View Repository
+                                            </a>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

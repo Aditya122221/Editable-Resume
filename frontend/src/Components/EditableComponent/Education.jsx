@@ -158,174 +158,175 @@ const EducationSection = () => {
     }, []);
 
     return (
-        <div className={styles.container}>
-            <Navbar />
-            <div className={styles.formSection}>
-                <h2 className={styles.sectionTitle}>Education Information</h2>
-                <div className={styles.form}>
-                    <div className={styles.formGrid}>
-                        {/* Institute */}
-                        <div className={styles.formGroup}>
-                            <label htmlFor="institute" className={styles.label}>Institute</label>
-                            <input
-                                type="text"
-                                id="institute"
-                                name="institute"
-                                value={formData.institute}
-                                onChange={handleInputChange}
-                                className={styles.input}
-                                placeholder="Enter institute name"
-                            />
-                        </div>
+        <><Navbar />
+            <div className={styles.container}>
+                <div className={styles.formSection}>
+                    <h2 className={styles.sectionTitle}>Education Information</h2>
+                    <div className={styles.form}>
+                        <div className={styles.formGrid}>
+                            {/* Institute */}
+                            <div className={styles.formGroup}>
+                                <label htmlFor="institute" className={styles.label}>Institute</label>
+                                <input
+                                    type="text"
+                                    id="institute"
+                                    name="institute"
+                                    value={formData.institute}
+                                    onChange={handleInputChange}
+                                    className={styles.input}
+                                    placeholder="Enter institute name"
+                                />
+                            </div>
 
-                        {/* Start Date */}
-                        <div className={styles.formGroup}>
-                            <label htmlFor="startDate" className={styles.label}>Start Date</label>
-                            <input
-                                type="date"
-                                id="startDate"
-                                name="startDate"
-                                value={formData.startDate}
-                                onChange={handleInputChange}
-                                className={styles.input}
-                            />
-                        </div>
+                            {/* Start Date */}
+                            <div className={styles.formGroup}>
+                                <label htmlFor="startDate" className={styles.label}>Start Date</label>
+                                <input
+                                    type="date"
+                                    id="startDate"
+                                    name="startDate"
+                                    value={formData.startDate}
+                                    onChange={handleInputChange}
+                                    className={styles.input}
+                                />
+                            </div>
 
-                        {/* End Date */}
-                        <div className={styles.formGroup}>
-                            <label htmlFor="endDate" className={styles.label}>End Date</label>
-                            <input
-                                type="date"
-                                id="endDate"
-                                name="endDate"
-                                value={formData.endDate}
-                                onChange={handleInputChange}
-                                className={styles.input}
-                            />
-                        </div>
+                            {/* End Date */}
+                            <div className={styles.formGroup}>
+                                <label htmlFor="endDate" className={styles.label}>End Date</label>
+                                <input
+                                    type="date"
+                                    id="endDate"
+                                    name="endDate"
+                                    value={formData.endDate}
+                                    onChange={handleInputChange}
+                                    className={styles.input}
+                                />
+                            </div>
 
-                        {/* Field */}
-                        <div className={styles.formGroup}>
-                            <label htmlFor="field" className={styles.label}>Field of Study</label>
-                            <input
-                                type="text"
-                                id="field"
-                                name="field"
-                                value={formData.field}
-                                onChange={handleInputChange}
-                                className={styles.input}
-                                placeholder="Enter field of study"
-                            />
-                        </div>
+                            {/* Field */}
+                            <div className={styles.formGroup}>
+                                <label htmlFor="field" className={styles.label}>Field of Study</label>
+                                <input
+                                    type="text"
+                                    id="field"
+                                    name="field"
+                                    value={formData.field}
+                                    onChange={handleInputChange}
+                                    className={styles.input}
+                                    placeholder="Enter field of study"
+                                />
+                            </div>
 
-                        {/* Marks Type */}
-                        <div className={styles.formGroup}>
-                            <label className={styles.label}>Marks Type</label>
-                            <div className={styles.radioGroup}>
-                                <label className={styles.radioLabel}>
-                                    <input
-                                        type="radio"
-                                        name="marksType"
-                                        value="percentage"
-                                        checked={formData.marksType === 'percentage'}
-                                        onChange={handleMarksTypeChange}
-                                        className={styles.radio}
-                                    />
-                                    Percentage
+                            {/* Marks Type */}
+                            <div className={styles.formGroup}>
+                                <label className={styles.label}>Marks Type</label>
+                                <div className={styles.radioGroup}>
+                                    <label className={styles.radioLabel}>
+                                        <input
+                                            type="radio"
+                                            name="marksType"
+                                            value="percentage"
+                                            checked={formData.marksType === 'percentage'}
+                                            onChange={handleMarksTypeChange}
+                                            className={styles.radio}
+                                        />
+                                        Percentage
+                                    </label>
+                                    <label className={styles.radioLabel}>
+                                        <input
+                                            type="radio"
+                                            name="marksType"
+                                            value="cgpa"
+                                            checked={formData.marksType === 'cgpa'}
+                                            onChange={handleMarksTypeChange}
+                                            className={styles.radio}
+                                        />
+                                        CGPA
+                                    </label>
+                                </div>
+                            </div>
+
+                            {/* Marks */}
+                            <div className={styles.formGroup}>
+                                <label htmlFor="marks" className={styles.label}>
+                                    {formData.marksType === 'percentage' ? 'Percentage (%)' : 'CGPA'}
                                 </label>
-                                <label className={styles.radioLabel}>
-                                    <input
-                                        type="radio"
-                                        name="marksType"
-                                        value="cgpa"
-                                        checked={formData.marksType === 'cgpa'}
-                                        onChange={handleMarksTypeChange}
-                                        className={styles.radio}
-                                    />
-                                    CGPA
-                                </label>
+                                <input
+                                    type="number"
+                                    id="marks"
+                                    name="marks"
+                                    value={formData.marks}
+                                    onChange={handleInputChange}
+                                    className={styles.input}
+                                    placeholder={formData.marksType === 'percentage' ? 'Enter percentage' : 'Enter CGPA'}
+                                    min="0"
+                                    max={formData.marksType === 'percentage' ? '100' : '10'}
+                                    step="0.01"
+                                />
+                            </div>
+
+                            {/* Address */}
+                            <div className={styles.formGroup}>
+                                <label htmlFor="address" className={styles.label}>Address</label>
+                                <input
+                                    type="text"
+                                    id="address"
+                                    name="address"
+                                    value={formData.address}
+                                    onChange={handleInputChange}
+                                    className={styles.input}
+                                    placeholder="Enter institute address"
+                                />
                             </div>
                         </div>
 
-                        {/* Marks */}
-                        <div className={styles.formGroup}>
-                            <label htmlFor="marks" className={styles.label}>
-                                {formData.marksType === 'percentage' ? 'Percentage (%)' : 'CGPA'}
-                            </label>
-                            <input
-                                type="number"
-                                id="marks"
-                                name="marks"
-                                value={formData.marks}
-                                onChange={handleInputChange}
-                                className={styles.input}
-                                placeholder={formData.marksType === 'percentage' ? 'Enter percentage' : 'Enter CGPA'}
-                                min="0"
-                                max={formData.marksType === 'percentage' ? '100' : '10'}
-                                step="0.01"
-                            />
-                        </div>
-
-                        {/* Address */}
-                        <div className={styles.formGroup}>
-                            <label htmlFor="address" className={styles.label}>Address</label>
-                            <input
-                                type="text"
-                                id="address"
-                                name="address"
-                                value={formData.address}
-                                onChange={handleInputChange}
-                                className={styles.input}
-                                placeholder="Enter institute address"
-                            />
-                        </div>
+                        <button onClick={handleSubmit} className={styles.submitBtn}>
+                            {editingEducationId ? 'Update Education' : 'Add Education'}
+                        </button>
                     </div>
-
-                    <button onClick={handleSubmit} className={styles.submitBtn}>
-                        {editingEducationId ? 'Update Education' : 'Add Education'}
-                    </button>
                 </div>
-            </div>
 
-            <div className={styles.displaySection}>
-                <h3 className={styles.displayTitle}>Education Records</h3>
-                {educationList.length === 0 ? (
-                    <p className={styles.emptyMessage}>No education records added yet.</p>
-                ) : (
-                    <div className={styles.educationGrid}>
-                        {educationList.map((education) => (
-                            <div key={education.Education_ID || education.id} className={styles.educationCard}>
-                                <div className={styles.cardHeader}>
-                                    <h4 className={styles.instituteName}>{education.institute}</h4>
-                                    <div className={styles.cardActions}>
-                                        <button
-                                            onClick={() => handleUpdate(education)}
-                                            className={styles.updateBtn}
-                                        >
-                                            Update
-                                        </button>
-                                        <button
-                                            onClick={() => handleDelete(education.Education_ID)}
-                                            className={styles.deleteBtn}
-                                        >
-                                            Delete
-                                        </button>
+                <div className={styles.displaySection}>
+                    <h3 className={styles.displayTitle}>Education Records</h3>
+                    {educationList.length === 0 ? (
+                        <p className={styles.emptyMessage}>No education records added yet.</p>
+                    ) : (
+                        <div className={styles.educationGrid}>
+                            {educationList.map((education) => (
+                                <div key={education.Education_ID || education.id} className={styles.educationCard}>
+                                    <div className={styles.cardHeader}>
+                                        <h4 className={styles.instituteName}>{education.institute}</h4>
+                                        <div className={styles.cardActions}>
+                                            <button
+                                                onClick={() => handleUpdate(education)}
+                                                className={styles.updateBtn}
+                                            >
+                                                Update
+                                            </button>
+                                            <button
+                                                onClick={() => handleDelete(education.Education_ID)}
+                                                className={styles.deleteBtn}
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className={styles.cardContent}>
+                                        <p className={styles.field}>{education.field}</p>
+                                        <p className={styles.duration}>
+                                            {education.startDate} - {education.endDate}
+                                        </p>
+                                        <p className={styles.marks}>{education.marks}</p>
+                                        <p className={styles.address}>{education.address}</p>
                                     </div>
                                 </div>
-                                <div className={styles.cardContent}>
-                                    <p className={styles.field}>{education.field}</p>
-                                    <p className={styles.duration}>
-                                        {education.startDate} - {education.endDate}
-                                    </p>
-                                    <p className={styles.marks}>{education.marks}</p>
-                                    <p className={styles.address}>{education.address}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

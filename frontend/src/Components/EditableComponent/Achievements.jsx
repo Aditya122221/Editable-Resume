@@ -79,67 +79,68 @@ const Achievements = () => {
     }, []);
 
     return (
-        <div className={styles.container}>
-            <Navbar />
-            <h2 className={styles.title}>Achievements</h2>
+        <><Navbar />
+            <div className={styles.container}>
+                <h2 className={styles.title}>Achievements</h2>
 
-            <form onSubmit={handleSubmit} className={styles.form}>
-                <div className={styles.inputSection}>
-                    <div className={styles.inputGroup}>
-                        <input
-                            type="text"
-                            value={achievementInput}
-                            onChange={(e) => setAchievementInput(e.target.value)}
-                            placeholder="Enter your achievement"
-                            className={styles.input}
-                            onKeyPress={(e) => {
-                                if (e.key === 'Enter') {
-                                    e.preventDefault();
-                                    addAchievement();
-                                }
-                            }}
-                        />
-                        <button
-                            type="button"
-                            onClick={addAchievement}
-                            className={styles.addButton}
-                        >
-                            Add Achievement
-                        </button>
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    <div className={styles.inputSection}>
+                        <div className={styles.inputGroup}>
+                            <input
+                                type="text"
+                                value={achievementInput}
+                                onChange={(e) => setAchievementInput(e.target.value)}
+                                placeholder="Enter your achievement"
+                                className={styles.input}
+                                onKeyPress={(e) => {
+                                    if (e.key === 'Enter') {
+                                        e.preventDefault();
+                                        addAchievement();
+                                    }
+                                }}
+                            />
+                            <button
+                                type="button"
+                                onClick={addAchievement}
+                                className={styles.addButton}
+                            >
+                                Add Achievement
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-                {achievements.length > 0 && (
-                    <div className={styles.achievementsList}>
-                        <h3 className={styles.listTitle}>Your Achievements:</h3>
-                        {achievements.map((achievement, index) => (
-                            <div key={index} className={styles.achievementItem}>
-                                <div className={styles.achievementContent}>
-                                    <span className={styles.bullet}>•</span>
-                                    <span className={styles.achievementText}>{achievement}</span>
+                    {achievements.length > 0 && (
+                        <div className={styles.achievementsList}>
+                            <h3 className={styles.listTitle}>Your Achievements:</h3>
+                            {achievements.map((achievement, index) => (
+                                <div key={index} className={styles.achievementItem}>
+                                    <div className={styles.achievementContent}>
+                                        <span className={styles.bullet}>•</span>
+                                        <span className={styles.achievementText}>{achievement}</span>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => removeAchievement(index)}
+                                        className={styles.removeButton}
+                                        aria-label={`Remove ${achievement}`}
+                                    >
+                                        ×
+                                    </button>
                                 </div>
-                                <button
-                                    type="button"
-                                    onClick={() => removeAchievement(index)}
-                                    className={styles.removeButton}
-                                    aria-label={`Remove ${achievement}`}
-                                >
-                                    ×
-                                </button>
-                            </div>
-                        ))}
-                    </div>
-                )}
+                            ))}
+                        </div>
+                    )}
 
-                <button
-                    type="submit"
-                    className={styles.submitButton}
-                    disabled={isSubmitting || achievements.length === 0}
-                >
-                    {isSubmitting ? 'Saving...' : 'Save Achievements'}
-                </button>
-            </form>
-        </div>
+                    <button
+                        type="submit"
+                        className={styles.submitButton}
+                        disabled={isSubmitting || achievements.length === 0}
+                    >
+                        {isSubmitting ? 'Saving...' : 'Save Achievements'}
+                    </button>
+                </form>
+            </div>
+        </>
     );
 };
 

@@ -184,194 +184,195 @@ const InternshipSection = () => {
     }, [handleSubmit, handleDelete]);
 
     return (
-        <div className={II.container}>
-            <Navbar />
-            <div className={II.formSection}>
-                <h2 className={II.sectionTitle}>
-                    {editingId ? 'Edit Internship' : 'Add New Internship'}
-                </h2>
+        <><Navbar />
+            <div className={II.container}>
+                <div className={II.formSection}>
+                    <h2 className={II.sectionTitle}>
+                        {editingId ? 'Edit Internship' : 'Add New Internship'}
+                    </h2>
 
-                <div className={II.form}>
-                    <div className={II.formRow}>
-                        <div className={II.formGroup}>
-                            <label className={II.label}>Internship Type *</label>
-                            <select
-                                name="internshipType"
-                                value={formData.internshipType}
-                                onChange={handleInputChange}
-                                className={II.select}
-                            >
-                                <option value="">Select Type</option>
-                                <option value="Summer Training">Summer Training</option>
-                                <option value="Internship">Internship</option>
-                                <option value="Experience">Experience</option>
-                            </select>
-                        </div>
-
-                        <div className={II.formGroup}>
-                            <label className={II.label}>Company Name *</label>
-                            <input
-                                type="text"
-                                name="companyName"
-                                value={formData.companyName}
-                                onChange={handleInputChange}
-                                placeholder="Enter company name"
-                                className={II.input}
-                            />
-                        </div>
-                    </div>
-
-                    <div className={II.formRow}>
-                        <div className={II.formGroup}>
-                            <label className={II.label}>Start Date *</label>
-                            <input
-                                type="date"
-                                name="startDate"
-                                value={formData.startDate}
-                                onChange={handleInputChange}
-                                className={II.input}
-                            />
-                        </div>
-
-                        <div className={II.formGroup}>
-                            <label className={II.label}>End Date</label>
-                            <input
-                                type="date"
-                                name="endDate"
-                                value={formData.endDate}
-                                onChange={handleInputChange}
-                                className={II.input}
-                            />
-                        </div>
-                    </div>
-
-                    <div className={II.formGroup}>
-                        <label className={II.label}>Description</label>
-                        <div className={II.inputWithButton}>
-                            <textarea
-                                name="description"
-                                value={formData.description}
-                                onChange={handleInputChange}
-                                placeholder="Enter description"
-                                className={II.textarea}
-                                rows="3"
-                            />
-                            <button type="button" onClick={addDescription} className={II.addButton}>
-                                Add
-                            </button>
-                        </div>
-                        {descriptions.length > 0 && (
-                            <div className={II.badgeContainer}>
-                                {descriptions.map((desc, index) => (
-                                    <span key={index} className={II.badge}>
-                                        {desc}
-                                        <button onClick={() => removeDescription(index)} className={II.removeBadge}>
-                                            ×
-                                        </button>
-                                    </span>
-                                ))}
+                    <div className={II.form}>
+                        <div className={II.formRow}>
+                            <div className={II.formGroup}>
+                                <label className={II.label}>Internship Type *</label>
+                                <select
+                                    name="internshipType"
+                                    value={formData.internshipType}
+                                    onChange={handleInputChange}
+                                    className={II.select}
+                                >
+                                    <option value="">Select Type</option>
+                                    <option value="Summer Training">Summer Training</option>
+                                    <option value="Internship">Internship</option>
+                                    <option value="Experience">Experience</option>
+                                </select>
                             </div>
-                        )}
-                    </div>
 
-                    <div className={II.formGroup}>
-                        <label className={II.label}>Technologies</label>
-                        <div className={II.inputWithButton}>
-                            <input
-                                type="text"
-                                name="technology"
-                                value={formData.technology}
-                                onChange={handleInputChange}
-                                placeholder="Enter technology"
-                                className={II.input}
-                            />
-                            <button type="button" onClick={addTechnology} className={II.addButton}>
-                                Add
-                            </button>
-                        </div>
-                        {technologies.length > 0 && (
-                            <div className={II.badgeContainer}>
-                                {technologies.map((tech, index) => (
-                                    <span key={index} className={II.badge}>
-                                        {tech}
-                                        <button onClick={() => removeTechnology(index)} className={II.removeBadge}>
-                                            ×
-                                        </button>
-                                    </span>
-                                ))}
+                            <div className={II.formGroup}>
+                                <label className={II.label}>Company Name *</label>
+                                <input
+                                    type="text"
+                                    name="companyName"
+                                    value={formData.companyName}
+                                    onChange={handleInputChange}
+                                    placeholder="Enter company name"
+                                    className={II.input}
+                                />
                             </div>
-                        )}
-                    </div>
+                        </div>
 
-                    <div className={II.formActions}>
-                        <button onClick={handleSubmit} className={II.submitButton}>
-                            {editingId ? 'Update Internship' : 'Add Internship'}
-                        </button>
-                        {editingId && (
-                            <button onClick={resetForm} className={II.cancelButton}>
-                                Cancel
+                        <div className={II.formRow}>
+                            <div className={II.formGroup}>
+                                <label className={II.label}>Start Date *</label>
+                                <input
+                                    type="date"
+                                    name="startDate"
+                                    value={formData.startDate}
+                                    onChange={handleInputChange}
+                                    className={II.input}
+                                />
+                            </div>
+
+                            <div className={II.formGroup}>
+                                <label className={II.label}>End Date</label>
+                                <input
+                                    type="date"
+                                    name="endDate"
+                                    value={formData.endDate}
+                                    onChange={handleInputChange}
+                                    className={II.input}
+                                />
+                            </div>
+                        </div>
+
+                        <div className={II.formGroup}>
+                            <label className={II.label}>Description</label>
+                            <div className={II.inputWithButton}>
+                                <textarea
+                                    name="description"
+                                    value={formData.description}
+                                    onChange={handleInputChange}
+                                    placeholder="Enter description"
+                                    className={II.textarea}
+                                    rows="3"
+                                />
+                                <button type="button" onClick={addDescription} className={II.addButton}>
+                                    Add
+                                </button>
+                            </div>
+                            {descriptions.length > 0 && (
+                                <div className={II.badgeContainer}>
+                                    {descriptions.map((desc, index) => (
+                                        <span key={index} className={II.badge}>
+                                            {desc}
+                                            <button onClick={() => removeDescription(index)} className={II.removeBadge}>
+                                                ×
+                                            </button>
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        <div className={II.formGroup}>
+                            <label className={II.label}>Technologies</label>
+                            <div className={II.inputWithButton}>
+                                <input
+                                    type="text"
+                                    name="technology"
+                                    value={formData.technology}
+                                    onChange={handleInputChange}
+                                    placeholder="Enter technology"
+                                    className={II.input}
+                                />
+                                <button type="button" onClick={addTechnology} className={II.addButton}>
+                                    Add
+                                </button>
+                            </div>
+                            {technologies.length > 0 && (
+                                <div className={II.badgeContainer}>
+                                    {technologies.map((tech, index) => (
+                                        <span key={index} className={II.badge}>
+                                            {tech}
+                                            <button onClick={() => removeTechnology(index)} className={II.removeBadge}>
+                                                ×
+                                            </button>
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        <div className={II.formActions}>
+                            <button onClick={handleSubmit} className={II.submitButton}>
+                                {editingId ? 'Update Internship' : 'Add Internship'}
                             </button>
-                        )}
+                            {editingId && (
+                                <button onClick={resetForm} className={II.cancelButton}>
+                                    Cancel
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className={II.internshipsSection}>
-                <h2 className={II.sectionTitle}>Your Internships</h2>
+                <div className={II.internshipsSection}>
+                    <h2 className={II.sectionTitle}>Your Internships</h2>
 
-                {internships.length === 0 ? (
-                    <div className={II.emptyState}>
-                        <p>No internships added yet. Add your first internship above!</p>
-                    </div>
-                ) : (
-                    <div className={II.internshipGrid}>
-                        {internships.map(internship => (
-                            <div key={internship.Internship_ID} className={II.internshipCard}>
-                                <div className={II.cardHeader}>
-                                    <h3 className={II.cardTitle}>{internship.companyName}</h3>
-                                    <span className={II.internshipType}>{internship.type}</span>
-                                </div>
-
-                                <div className={II.cardDates}>
-                                    {formatDateDisplay(internship.startDate)} - {formatDateDisplay(internship.endDate)}
-                                </div>
-
-                                {internship.description.length > 0 && (
-                                    <div className={II.cardSection}>
-                                        <h4 className={II.cardSectionTitle}>Descriptions</h4>
-                                        <div className={II.cardBadges}>
-                                            {internship.description.map((desc, index) => (
-                                                <span key={index} className={II.cardBadge}>{desc}</span>
-                                            ))}
-                                        </div>
+                    {internships.length === 0 ? (
+                        <div className={II.emptyState}>
+                            <p>No internships added yet. Add your first internship above!</p>
+                        </div>
+                    ) : (
+                        <div className={II.internshipGrid}>
+                            {internships.map(internship => (
+                                <div key={internship.Internship_ID} className={II.internshipCard}>
+                                    <div className={II.cardHeader}>
+                                        <h3 className={II.cardTitle}>{internship.companyName}</h3>
+                                        <span className={II.internshipType}>{internship.type}</span>
                                     </div>
-                                )}
 
-                                {internship.technologies.length > 0 && (
-                                    <div className={II.cardSection}>
-                                        <h4 className={II.cardSectionTitle}>Technologies</h4>
-                                        <div className={II.cardBadges}>
-                                            {internship.technologies.map((tech, index) => (
-                                                <span key={index} className={II.cardBadge}>{tech}</span>
-                                            ))}
-                                        </div>
+                                    <div className={II.cardDates}>
+                                        {formatDateDisplay(internship.startDate)} - {formatDateDisplay(internship.endDate)}
                                     </div>
-                                )}
 
-                                <div className={II.cardActions}>
-                                    <button onClick={() => handleEdit(internship)} className={II.updateButton}>
-                                        Update
-                                    </button>
-                                    <button onClick={() => handleDelete(internship.Internship_ID)} className={II.deleteButton}>
-                                        Delete
-                                    </button>
+                                    {internship.description.length > 0 && (
+                                        <div className={II.cardSection}>
+                                            <h4 className={II.cardSectionTitle}>Descriptions</h4>
+                                            <div className={II.cardBadges}>
+                                                {internship.description.map((desc, index) => (
+                                                    <span key={index} className={II.cardBadge}>{desc}</span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {internship.technologies.length > 0 && (
+                                        <div className={II.cardSection}>
+                                            <h4 className={II.cardSectionTitle}>Technologies</h4>
+                                            <div className={II.cardBadges}>
+                                                {internship.technologies.map((tech, index) => (
+                                                    <span key={index} className={II.cardBadge}>{tech}</span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <div className={II.cardActions}>
+                                        <button onClick={() => handleEdit(internship)} className={II.updateButton}>
+                                            Update
+                                        </button>
+                                        <button onClick={() => handleDelete(internship.Internship_ID)} className={II.deleteButton}>
+                                            Delete
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

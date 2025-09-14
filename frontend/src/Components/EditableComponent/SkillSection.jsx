@@ -127,18 +127,19 @@ const SkillsSection = () => {
     }, []); // Empty array so it runs only once, not on every handleSkill change
 
     return (
-        <div className={SS.container}>
-            <Navbar />
-            <h2 className={SS.title}>Skills</h2>
-            <form onSubmit={handleSkill} className={SS.form}>
-                {renderSection('Languages', languageInput, setLanguageInput, languages, setLanguages)}
-                {renderSection('Technologies', technologyInput, setTechnologyInput, technologies, setTechnologies)}
-                {renderSection('Tools/Platforms', skillInput, setSkillInput, skills, setSkills)}
-                {renderSection('Soft Skills', softSkillInput, setSoftSkillInput, softSkills, setSoftSkills)}
+        <><Navbar />
+            <div className={SS.container}>
+                <h2 className={SS.title}>Skills</h2>
+                <form onSubmit={handleSkill} className={SS.form}>
+                    {renderSection('Languages', languageInput, setLanguageInput, languages, setLanguages)}
+                    {renderSection('Technologies', technologyInput, setTechnologyInput, technologies, setTechnologies)}
+                    {renderSection('Tools/Platforms', skillInput, setSkillInput, skills, setSkills)}
+                    {renderSection('Soft Skills', softSkillInput, setSoftSkillInput, softSkills, setSoftSkills)}
 
-                <button type='submit'>Add Skills</button>
-            </form>
-        </div>
+                    <button type='submit'>Add Skills</button>
+                </form>
+            </div>
+        </>
     );
 };
 
