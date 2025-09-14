@@ -11,6 +11,7 @@ import SkillController from "../Controllers/SkillController.js"
 import EducationController from '../Controllers/EducationController.js'
 import InternshipController from "../Controllers/InternshipController.js"
 import TempController from "../Controllers/TempController.js"
+import AchievementsController from "../Controllers/AchievementsController.js"
 import { submitContactForm, getContactMessages, updateMessageStatus } from "../Controllers/ContactController.js"
 
 router.post('/signup', SignupController)
@@ -22,6 +23,7 @@ router.post('/certificate', CertificateController)
 router.post('/skill', SkillController)
 router.post('/education', EducationController)
 router.post('/internship', InternshipController)
+router.post('/achievement', AchievementsController)
 
 // Contact form routes
 router.post('/api/contact', submitContactForm)

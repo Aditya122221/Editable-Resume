@@ -10,12 +10,14 @@ import Internship from "./Components/GeneralResume/Internship";
 import Project from "./Components/GeneralResume/Projects";
 import Certificate from "./Components/GeneralResume/Certificate";
 import Education from "./Components/GeneralResume/Education";
+import Achievements from "./Components/GeneralResume/Achievements";
 
 function GeneralResume() {
     const [education, setEducation] = useState([]);
     const [certificate, setCertificate] = useState([]);
     const [project, setProject] = useState([]);
     const [internship, setInternship] = useState([]);
+    const [achievements, setAchievements] = useState([]);
     const [profile, setProfile] = useState({});
     const [skills, setSkills] = useState({});
     const [isDownloadable, setIsDownloadable] = useState(false)
@@ -32,6 +34,11 @@ function GeneralResume() {
                 setCertificate(res.data.certificate || []);
                 setProject(res.data.project || []);
                 setInternship(res.data.internship || []);
+                // Extract achievements array from the first achievement object if it exists
+                const achievementsData = res.data.achievements && res.data.achievements.length > 0
+                    ? res.data.achievements[0].achievements || []
+                    : [];
+                setAchievements(achievementsData);
 
                 setProfile(res.data.profile || {});
                 setSkills(res.data.skill || {});
@@ -50,6 +57,8 @@ function GeneralResume() {
             setCertificate((prev) => prev.filter((_, i) => i !== index))
         } else if (a === 4) {
             setEducation((prev) => prev.filter((_, i) => i !== index))
+        } else if (a === 5) {
+            setAchievements((prev) => prev.filter((_, i) => i !== index))
         }
         console.log("Deleted")
     }
@@ -159,6 +168,7 @@ function GeneralResume() {
                 {internship && internship.length > 0 && <Internship internship={internship} onDelete={handleDelete} isDownloadable={isDownloadable} />}
                 {project && project.length > 0 && <Project project={project} onDelete={handleDelete} isDownloadable={isDownloadable} />}
                 {certificate && certificate.length > 0 && <Certificate certificate={certificate} onDelete={handleDelete} isDownloadable={isDownloadable} />}
+                {achievements && achievements.length > 0 && <Achievements achievements={achievements} onDelete={handleDelete} isDownloadable={isDownloadable} />}
                 {education && education.length > 0 && <Education education={education} onDelete={handleDelete} isDownloadable={isDownloadable} />}
             </div>
         </>

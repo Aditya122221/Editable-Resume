@@ -3,8 +3,6 @@
     flex-direction: column;
 }
 
-.container {}
-
 .name {
     color: #2E3092;
     font-family: 'Times New Roman', Times, serif;
@@ -80,7 +78,7 @@
 
 .ad {
     font-weight: lighter;
-    margin-left: 60px;
+    margin-left: 15px;
 }
 
 .ba {

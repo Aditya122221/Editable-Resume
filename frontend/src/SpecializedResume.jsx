@@ -4,6 +4,7 @@ import Project from './Components/SpecializedResume/Project.jsx';
 import Certificate from './Components/SpecializedResume/Certificate.jsx';
 import TechnicalSkill from './Components/SpecializedResume/TechnicalSkill.jsx';
 import Education from './Components/SpecializedResume/Education.jsx';
+import Achievements from './Components/SpecializedResume/Achievements.jsx';
 import Navbar from './Navbar.jsx'
 import styles from './style.module.css';
 import { useEffect, useState } from 'react';
@@ -17,6 +18,7 @@ function SpecializedResume() {
   const [profile, setProfile] = useState({})
   const [skillls, setSkillls] = useState({})
   const [internship, setInternship] = useState([])
+  const [achievements, setAchievements] = useState([])
   const [isDownloadable, setIsDownloadable] = useState(false)
 
   useEffect(() => {
@@ -36,6 +38,11 @@ function SpecializedResume() {
         setCertificate(sortByDateDesc(res.data.certificate, "startDate"));
         setProject(sortByDateDesc(res.data.project, "startDate"));
         setInternship(sortByDateDesc(res.data.internship, "startDate"));  // array expected
+        // Extract achievements array from the first achievement object if it exists
+        const achievementsData = res.data.achievements && res.data.achievements.length > 0
+          ? res.data.achievements[0].achievements || []
+          : [];
+        setAchievements(achievementsData);
 
         setProfile(res.data.profile || {});
         setSkillls(res.data.skill || {});
@@ -54,6 +61,8 @@ function SpecializedResume() {
       setCertificate((prev) => prev.filter((_, i) => i !== index))
     } else if (a === 4) {
       setEducation((prev) => prev.filter((_, i) => i !== index))
+    } else if (a === 5) {
+      setAchievements((prev) => prev.filter((_, i) => i !== index))
     }
     console.log("Deleted")
   }
@@ -166,6 +175,10 @@ function SpecializedResume() {
 
         {skillls && Object.keys(skillls).length > 0 && (
           <TechnicalSkill skills={skillls} onSkillsUpdate={setSkillls} />
+        )}
+
+        {Array.isArray(achievements) && achievements.length > 0 && (
+          <Achievements achievements={achievements} onDelete={handleDelete} isDownloadable={isDownloadable} />
         )}
 
         {Array.isArray(education) && education.length > 0 && (

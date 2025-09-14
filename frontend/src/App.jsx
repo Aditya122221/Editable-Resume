@@ -6,21 +6,60 @@ import Projects from "./Components/EditableComponent/Projects";
 import Certificate from "./Components/EditableComponent/Certificate";
 import SkillsSection from "./Components/EditableComponent/SkillSection";
 import EducationSection from "./Components/EditableComponent/Education";
+import Achievements from "./Components/EditableComponent/Achievements";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoute, PublicRoute } from "./AuthRoute";
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import GeneralResume from "./GeneralResume";
 import Internship from "./Components/EditableComponent/Internship";
 import AboutUs from "./Components/AboutUs";
 import LandingPage from "./LandingPage";
 
+// Component to handle landing page with authentication check
+const LandingPageWithAuth = () => {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		// Check if user is logged in
+		const token = localStorage.getItem("EditableResumeToken");
+		setIsLoggedIn(!!token);
+		setIsLoading(false);
+	}, []);
+
+	// Show loading while checking authentication
+	if (isLoading) {
+		return (
+			<div style={{
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				height: '100vh',
+				fontSize: '18px'
+			}}>
+				Loading...
+			</div>
+		);
+	}
+
+	// If logged in, redirect to profile page
+	if (isLoggedIn) {
+		return <Navigate to="/profile" replace />;
+	}
+
+	// If not logged in, show landing page
+	return <LandingPage />;
+};
+
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				{/* Landing page - accessible to all */}
+				{/* Landing page - redirects logged-in users to profile */}
 				<Route
 					path="/"
-					element={<LandingPage />}
+					element={<LandingPageWithAuth />}
 				/>
 				{/* Public routes (blocked if logged in) */}
 				<Route
@@ -102,6 +141,14 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<Internship />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path="/achievements"
+					element={
+						<ProtectedRoute>
+							<Achievements />
 						</ProtectedRoute>
 					}
 				/>

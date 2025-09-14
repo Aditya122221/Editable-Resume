@@ -1,0 +1,183 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+}
+
+.inputSection {
+    margin-bottom: 2rem;
+}
+
+.inputGroup {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.addButton {
+    padding: 0.75rem 1.5rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.addButton:hover {
+    background: #1d4ed8;
+}
+
+.achievementsList {
+    margin-bottom: 2rem;
+}
+
+.listTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 1rem;
+}
+
+.achievementItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.achievementItem:hover {
+    background: #f1f5f9;
+}
+
+.achievementContent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.bullet {
+    color: #2563eb;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 0.1rem;
+}
+
+.achievementText {
+    color: #374151;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.removeButton {
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    margin-left: 1rem;
+}
+
+.removeButton:hover {
+    background: #dc2626;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 1rem;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+    background: #059669;
+}
+
+.submitButton:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .form {
+        padding: 1.5rem;
+    }
+
+    .inputGroup {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .addButton {
+        width: 100%;
+    }
+
+    .achievementItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .removeButton {
+        align-self: flex-end;
+        margin-left: 0;
+    }
+}

@@ -178,32 +178,32 @@
   .container {
     padding: 1rem;
   }
-  
+
   .profileCard {
     border-radius: 12px;
   }
-  
+
   .header {
     padding: 1.5rem 1rem 1rem;
   }
-  
+
   .headerTitle {
     font-size: 1.5rem;
   }
-  
+
   .form {
     padding: 1.5rem 1rem;
   }
-  
+
   .profilePictureSection {
     padding: 1.5rem 1rem;
   }
-  
+
   .profilePicture {
     width: 100px;
     height: 100px;
   }
-  
+
   .profilePictureIcon {
     width: 40px;
     height: 40px;

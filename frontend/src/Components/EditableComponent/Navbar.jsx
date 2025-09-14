@@ -2,105 +2,105 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const styles = {
-  navbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '1rem',
-    backgroundColor: '#ffffff',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    borderBottom: '1px solid #e5e7eb',
-    position: 'sticky',
-    top: 0,
-    zIndex: 1000,
-    flexWrap: 'wrap'
-  },
-  
-  logo: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: '#1f2937',
-    textDecoration: 'none'
-  },
-  
-  mobileMenuBtn: {
-    display: 'none',
-    background: 'none',
-    border: 'none',
-    fontSize: '1.5rem',
-    cursor: 'pointer',
-    color: '#1f2937'
-  },
-  
-  navLinks: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '1rem',
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
-    flexWrap: 'wrap'
-  },
-  
-  navLinksHidden: {
-    display: 'none',
-    width: '100%',
-    flexDirection: 'column',
-    backgroundColor: '#ffffff',
-    borderTop: '1px solid #e5e7eb',
-    padding: '1rem 0',
-    gap: '0.5rem'
-  },
-  
-  navLinksVisible: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'column',
-    backgroundColor: '#ffffff',
-    borderTop: '1px solid #e5e7eb',
-    padding: '1rem 0',
-    gap: '0.5rem'
-  },
-  
-  navItem: {
-    margin: 0
-  },
-  
-  navLink: {
-    color: '#6b7280',
-    textDecoration: 'none',
-    fontSize: '1rem',
-    fontWeight: '500',
-    padding: '0.5rem 1rem',
-    borderRadius: '0.375rem',
-    transition: 'all 0.2s ease-in-out',
-    cursor: 'pointer',
-    whiteSpace: 'nowrap'
-  },
-  
-  navLinkHover: {
-    color: '#3b82f6',
-    backgroundColor: '#f3f4f6'
-  },
-  
-  logoutBtn: {
-    color: '#dc2626',
-    backgroundColor: '#fef2f2',
-    border: '1px solid #fecaca',
-    padding: '0.5rem 1rem',
-    borderRadius: '0.375rem',
-    fontSize: '1rem',
-    fontWeight: '500',
-    cursor: 'pointer',
-    transition: 'all 0.2s ease-in-out',
-    whiteSpace: 'nowrap'
-  },
-  
-  logoutBtnHover: {
-    backgroundColor: '#dc2626',
-    color: '#ffffff',
-    borderColor: '#dc2626'
-  }
+    navbar: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '1rem',
+        backgroundColor: '#ffffff',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        borderBottom: '1px solid #e5e7eb',
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+        flexWrap: 'wrap'
+    },
+
+    logo: {
+        fontSize: '1.5rem',
+        fontWeight: 'bold',
+        color: '#1f2937',
+        textDecoration: 'none'
+    },
+
+    mobileMenuBtn: {
+        display: 'none',
+        background: 'none',
+        border: 'none',
+        fontSize: '1.5rem',
+        cursor: 'pointer',
+        color: '#1f2937'
+    },
+
+    navLinks: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
+        listStyle: 'none',
+        margin: 0,
+        padding: 0,
+        flexWrap: 'wrap'
+    },
+
+    navLinksHidden: {
+        display: 'none',
+        width: '100%',
+        flexDirection: 'column',
+        backgroundColor: '#ffffff',
+        borderTop: '1px solid #e5e7eb',
+        padding: '1rem 0',
+        gap: '0.5rem'
+    },
+
+    navLinksVisible: {
+        display: 'flex',
+        width: '100%',
+        flexDirection: 'column',
+        backgroundColor: '#ffffff',
+        borderTop: '1px solid #e5e7eb',
+        padding: '1rem 0',
+        gap: '0.5rem'
+    },
+
+    navItem: {
+        margin: 0
+    },
+
+    navLink: {
+        color: '#6b7280',
+        textDecoration: 'none',
+        fontSize: '1rem',
+        fontWeight: '500',
+        padding: '0.5rem 1rem',
+        borderRadius: '0.375rem',
+        transition: 'all 0.2s ease-in-out',
+        cursor: 'pointer',
+        whiteSpace: 'nowrap'
+    },
+
+    navLinkHover: {
+        color: '#3b82f6',
+        backgroundColor: '#f3f4f6'
+    },
+
+    logoutBtn: {
+        color: '#dc2626',
+        backgroundColor: '#fef2f2',
+        border: '1px solid #fecaca',
+        padding: '0.5rem 1rem',
+        borderRadius: '0.375rem',
+        fontSize: '1rem',
+        fontWeight: '500',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease-in-out',
+        whiteSpace: 'nowrap'
+    },
+
+    logoutBtnHover: {
+        backgroundColor: '#dc2626',
+        color: '#ffffff',
+        borderColor: '#dc2626'
+    }
 };
 
 const Navbar = () => {
@@ -115,7 +115,8 @@ const Navbar = () => {
         'Certificate',
         'Skill',
         'Education',
-        'Internship'
+        'Internship',
+        'Achievements'
     ];
 
     // Check if screen is mobile size
