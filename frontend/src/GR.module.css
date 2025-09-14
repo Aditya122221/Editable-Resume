@@ -279,3 +279,13 @@
 .noPrint {
     display: none;
 }
+
+.draggableSkill {
+    cursor: grab;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.draggableSkill:active {
+    cursor: grabbing;
+}

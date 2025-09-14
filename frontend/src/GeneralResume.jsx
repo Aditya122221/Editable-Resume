@@ -155,7 +155,7 @@ function GeneralResume() {
 
             <div className={GG.container} ref={resumeRef}>
                 <Header profile={profile} />
-                {skills && Object.keys(skills).length > 0 && <SkillSection skills={skills} />}
+                {skills && Object.keys(skills).length > 0 && <SkillSection skills={skills} onSkillsUpdate={setSkills} />}
                 {internship && internship.length > 0 && <Internship internship={internship} onDelete={handleDelete} isDownloadable={isDownloadable} />}
                 {project && project.length > 0 && <Project project={project} onDelete={handleDelete} isDownloadable={isDownloadable} />}
                 {certificate && certificate.length > 0 && <Certificate certificate={certificate} onDelete={handleDelete} isDownloadable={isDownloadable} />}

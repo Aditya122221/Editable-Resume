@@ -4,11 +4,13 @@ import axios from 'axios';
 import styles from '../CSS/AboutUs.module.css';
 import ProfileImage from '../assets/profileImage.png';
 import Navbar from '../Navbar';
+import { Link } from 'react-router-dom';
 
 const AboutUs = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [activeSection, setActiveSection] = useState('about');
     const [hoveredIcon, setHoveredIcon] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -19,6 +21,9 @@ const AboutUs = () => {
 
     useEffect(() => {
         setIsVisible(true);
+        // Check if user is logged in
+        const token = localStorage.getItem('EditableReg');
+        setIsLoggedIn(!!token);
     }, []);
 
     // Personal details - replace with your actual information
@@ -107,8 +112,21 @@ const AboutUs = () => {
 
     return (
         <div>
-            <Navbar />
-            <div className={`${styles.aboutUsContainer} ${isVisible ? styles.visible : ''}`}>
+            {isLoggedIn && <Navbar />}
+            {!isLoggedIn && (
+                <header className={styles.publicHeader}>
+                    <div className={styles.headerContent}>
+                        <Link to="/" className={styles.logo}>
+                            <h1>Editable CV</h1>
+                        </Link>
+                        <div className={styles.headerButtons}>
+                            <Link to="/login" className={styles.loginBtn}>Login</Link>
+                            <Link to="/signup" className={styles.signupBtn}>Sign Up</Link>
+                        </div>
+                    </div>
+                </header>
+            )}
+            <div className={`${styles.aboutUsContainer} ${isVisible ? styles.visible : ''} ${!isLoggedIn ? styles.noNavbar : ''}`}>
                 <div className={styles.header}>
                     <h1 className={styles.title}>About Me</h1>
                     <p className={styles.subtitle}>Get to know me better</p>

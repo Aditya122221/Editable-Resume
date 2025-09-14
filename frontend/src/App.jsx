@@ -11,14 +11,20 @@ import { ProtectedRoute, PublicRoute } from "./AuthRoute";
 import GeneralResume from "./GeneralResume";
 import Internship from "./Components/EditableComponent/Internship";
 import AboutUs from "./Components/AboutUs";
+import LandingPage from "./LandingPage";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				{/* Public routes (blocked if logged in) */}
+				{/* Landing page - accessible to all */}
 				<Route
 					path="/"
+					element={<LandingPage />}
+				/>
+				{/* Public routes (blocked if logged in) */}
+				<Route
+					path="/login"
 					element={
 						<PublicRoute>
 							<Login />
@@ -101,11 +107,7 @@ function App() {
 				/>
 				<Route
 					path="/about"
-					element={
-						<ProtectedRoute>
-							<AboutUs />
-						</ProtectedRoute>
-					}
+					element={<AboutUs />}
 				/>
 			</Routes>
 		</BrowserRouter>

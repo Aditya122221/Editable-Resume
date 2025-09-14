@@ -165,7 +165,7 @@ function SpecializedResume() {
         )}
 
         {skillls && Object.keys(skillls).length > 0 && (
-          <TechnicalSkill skills={skillls} />
+          <TechnicalSkill skills={skillls} onSkillsUpdate={setSkillls} />
         )}
 
         {Array.isArray(education) && education.length > 0 && (

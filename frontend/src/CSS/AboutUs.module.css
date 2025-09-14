@@ -1,4 +1,75 @@
 /* About Us Page Styles */
+
+/* Public Header for non-logged in users */
+.publicHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    text-decoration: none;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2563eb;
+    margin: 0;
+}
+
+.headerButtons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.loginBtn,
+.signupBtn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: inline-block;
+}
+
+.loginBtn {
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+}
+
+.loginBtn:hover {
+    background: #f9fafb;
+    color: #374151;
+}
+
+.signupBtn {
+    background: #2563eb;
+    color: white;
+    border: 1px solid #2563eb;
+}
+
+.signupBtn:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
 .aboutUsContainer {
     min-height: 100vh;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -7,6 +78,11 @@
     transform: translateY(20px);
     transition: all 0.6s ease-in-out;
     font-family: 'Inter', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Adjust padding when no navbar is present */
+.aboutUsContainer.noNavbar {
+    padding-top: 6rem;
 }
 
 .aboutUsContainer.visible {

@@ -3,7 +3,7 @@
 .resume {
   margin: 0;
   font-family: 'Calibri';
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4;
   color: #000;
   background: white;
@@ -16,14 +16,14 @@
 }
 
 .name {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: bold;
   margin: 0 0 5px 0;
   color: #000;
 }
 
 .location {
-  font-size: 17px;
+  font-size: 19px;
   margin: 0 0 10px 0;
   color: #000;
 }
@@ -50,7 +50,7 @@
 }
 
 .sectionTitle {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   margin: 0 0 15px 0;
   color: #000;
@@ -71,14 +71,14 @@
 }
 
 .jobTitle {
-  font-size: 17px;
+  font-size: 19px;
   font-weight: bold;
   margin: 0;
   color: #000;
 }
 
 .date {
-  font-size: 17px;
+  font-size: 19px;
   color: #000;
   font-weight: bold;
   white-space: nowrap;
@@ -92,7 +92,7 @@
 .bulletList {
   margin: 8px 0;
   padding-left: 20px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .bulletList li {
@@ -103,7 +103,7 @@
 .techStack {
   margin: 8px 0 0 0;
   color: #000;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 /* Projects Section */
@@ -122,7 +122,7 @@
 }
 
 .projectTitle {
-  font-size: 17px;
+  font-size: 19px;
   font-weight: bold;
   margin: 0;
   color: #000;
@@ -138,7 +138,7 @@
 .githubLink {
   margin: 8px 0 0 0;
   color: #000;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .linkgit {
@@ -148,7 +148,7 @@
 /* Certificates Section */
 .certificateItem {
   margin-bottom: 15px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .certificateHeader {
@@ -159,7 +159,7 @@
 }
 
 .certificateTitle {
-  font-size: 17px;
+  font-size: 19px;
   font-weight: bold;
   margin: 0;
   color: #000;
@@ -175,7 +175,7 @@
 /* Technical Skills Section */
 .skillsContainer {
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .skillLine {
@@ -183,10 +183,20 @@
   color: #000;
 }
 
+.draggableSkill {
+  cursor: grab;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.draggableSkill:active {
+  cursor: grabbing;
+}
+
 /* Education Section */
 .educationItem {
   margin-bottom: 15px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .educationHeader {
@@ -197,7 +207,7 @@
 }
 
 .institutionName {
-  font-size: 17px;
+  font-size: 19px;
   font-weight: bold;
   margin: 0;
   color: #000;
@@ -249,18 +259,18 @@
   }
 
   .name {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .sectionTitle {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .projectTitle,
   .jobTitle,
   .certificateTitle,
   .institutionName {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
