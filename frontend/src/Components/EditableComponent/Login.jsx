@@ -57,7 +57,7 @@ const Login = () => {
 
 			axios.post(`${import.meta.env.VITE_API_BASE_URL}/login`, payload).then((res) => {
 				alert(res.data.message)
-				
+
 				if (res.status === 200) {
 					localStorage.setItem("EditableResumeToken", res.data.token)
 					localStorage.setItem("EditableReg", res.data.RegID)
@@ -117,9 +117,9 @@ const Login = () => {
 							<input type="checkbox" className={styles.checkbox} />
 							Remember me
 						</label>
-						<a href="#" className={styles.forgotPassword}>
+						<Link to="/forgot-password" className={styles.forgotPassword}>
 							Forgot password?
-						</a>
+						</Link>
 					</div>
 
 					<button type="submit" className={styles.submitButton}>

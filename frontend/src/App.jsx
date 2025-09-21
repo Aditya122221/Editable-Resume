@@ -1,4 +1,6 @@
 import Login from "./Components/EditableComponent/Login";
+import ForgotPassword from "./Components/EditableComponent/ForgotPassword";
+import ResetPassword from "./Components/EditableComponent/ResetPassword";
 import ProfilePage from "./Components/EditableComponent/Profile";
 import Signup from "./Components/EditableComponent/Signup";
 import SpecializedResume from "./SpecializedResume";
@@ -75,6 +77,22 @@ function App() {
 					element={
 						<PublicRoute>
 							<Signup />
+						</PublicRoute>
+					}
+				/>
+				<Route
+					path="/forgot-password"
+					element={
+						<PublicRoute>
+							<ForgotPassword />
+						</PublicRoute>
+					}
+				/>
+				<Route
+					path="/reset-password"
+					element={
+						<PublicRoute>
+							<ResetPassword />
 						</PublicRoute>
 					}
 				/>

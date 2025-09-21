@@ -3,7 +3,7 @@ import userData from "../Models/UserModel.js"
 const SignupController = async (req, res) => {
     try {
         const { fName, lName, email, password } = req.body
-        
+
         const existingEmail = await userData.findOne({ email })
         if (existingEmail) {
             return res.status(209).json({
@@ -31,9 +31,9 @@ const SignupController = async (req, res) => {
         await newUser.save()
 
         return res.status(200).json({
-                status: false,
-                message: "User Registered",
-            })
+            status: true,
+            message: "User Registered Successfully",
+        })
     } catch (err) {
         console.error(err)
         return res

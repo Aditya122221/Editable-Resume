@@ -107,6 +107,18 @@
   font-weight: 500;
 }
 
+.success {
+  font-size: 12px;
+  color: #38a169;
+  margin-top: 4px;
+  font-weight: 500;
+  line-height: 1.4;
+  background: #f0fff4;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #9ae6b4;
+}
+
 .options {
   display: flex;
   justify-content: space-between;
@@ -191,20 +203,86 @@
   text-decoration: underline;
 }
 
+/* Reset Link Styles */
+.resetLinkContainer {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.resetLinkBox h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.linkDisplay {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.resetLink {
+  flex: 1;
+  color: #667eea;
+  text-decoration: none;
+  font-size: 14px;
+  word-break: break-all;
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.resetLink:hover {
+  background: #f8f9fa;
+  border-color: #667eea;
+}
+
+.copyButton {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.copyButton:hover {
+  background: #5a67d8;
+  transform: translateY(-1px);
+}
+
+.linkNote {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
 /* Responsive Design */
 @media (max-width: 480px) {
   .container {
     padding: 16px;
   }
-  
+
   .loginCard {
     padding: 24px;
   }
-  
+
   .title {
     font-size: 24px;
   }
-  
+
   .subtitle {
     font-size: 14px;
   }

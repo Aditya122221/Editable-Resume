@@ -3,6 +3,8 @@ const router = express.Router()
 
 import SignupController from "../Controllers/SignupController.js"
 import LoginController from "../Controllers/LoginController.js"
+import ForgotPasswordController from "../Controllers/ForgotPasswordController.js"
+import ResetPasswordController from "../Controllers/ResetPasswordController.js"
 import FetchController from '../Controllers/FetchController.js'
 import ProfileController from "../Controllers/ProfileController.js"
 import ProjectController from "../Controllers/ProjectController.js"
@@ -16,6 +18,8 @@ import { submitContactForm, getContactMessages, updateMessageStatus } from "../C
 
 router.post('/signup', SignupController)
 router.post('/login', LoginController)
+router.post('/forgot-password', ForgotPasswordController)
+router.post('/reset-password', ResetPasswordController)
 router.post('/fetchalldata', FetchController)
 router.post('/profile', ProfileController)
 router.post('/project', ProjectController)

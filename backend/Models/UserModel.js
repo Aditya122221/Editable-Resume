@@ -16,6 +16,12 @@ const userDataSchema = new mongoose.Schema({
     password: {
         type: String
     },
+    resetPasswordToken: {
+        type: String
+    },
+    resetPasswordExpires: {
+        type: Date
+    }
 }, { timestamps: true })
 
 const userData = mongoose.model("userData", userDataSchema)
